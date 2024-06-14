@@ -1,0 +1,36 @@
+.nav{
+    padding: 1% 1% 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.logo{
+    width: 150px;
+}
+.nav-list{
+    width: 35%;
+}
+.nav-list>ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+#nav-auth-btn{
+    display: block;
+    padding: 10px;
+    color: white;
+    background-color: #1a73e8; 
+    text-align: center;
+    border-radius: 5px;
+}
+/* .nav-list-items{
+    display: block;
+    padding: 10px;
+
+} */
+.nav-list-items:hover{
+    text-decoration: underline;
+    text-decoration-color: #1a73e8;
+}
