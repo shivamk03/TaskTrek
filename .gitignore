@@ -24,9 +24,9 @@
 
 /Backend/tasktrek/HELP.md
 /Backend/tasktrek/target/
-/Backend/tasktrek/!.mvn/wrapper/maven-wrapper.jar
-/Backend/tasktrek/!**/src/main/**/target/
-/Backend/tasktrek/!**/src/test/**/target/
+/Backend/tasktrek/.mvn/wrapper/maven-wrapper.jar
+/Backend/tasktrek/src/main/**/target/
+/Backend/tasktrek/src/test/**/target/
 
 ### STS ###
 /Backend/tasktrek/.apt_generated
@@ -38,7 +38,7 @@
 /Backend/tasktrek/.sts4-cache
 
 ### IntelliJ IDEA ###
-/Backend/tasktrek/.idea
+/Backend/.idea
 /Backend/tasktrek/*.iws
 /Backend/tasktrek/*.iml
 /Backend/tasktrek/*.ipr
