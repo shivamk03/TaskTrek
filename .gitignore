@@ -21,3 +21,38 @@
 /Frontendnpm-debug.log*
 /Frontendyarn-debug.log*
 /Frontendyarn-error.log*
+
+/Backend/tasktrek/HELP.md
+/Backend/tasktrek/target/
+/Backend/tasktrek/!.mvn/wrapper/maven-wrapper.jar
+/Backend/tasktrek/!**/src/main/**/target/
+/Backend/tasktrek/!**/src/test/**/target/
+
+### STS ###
+/Backend/tasktrek/.apt_generated
+/Backend/tasktrek/.classpath
+/Backend/tasktrek/.factorypath
+/Backend/tasktrek/.project
+/Backend/tasktrek/.settings
+/Backend/tasktrek/.springBeans
+/Backend/tasktrek/.sts4-cache
+
+### IntelliJ IDEA ###
+/Backend/tasktrek/.idea
+/Backend/tasktrek/*.iws
+/Backend/tasktrek/*.iml
+/Backend/tasktrek/*.ipr
+
+### NetBeans ###
+/Backend/tasktrek/nbproject/private/
+/Backend/tasktrek/nbbuild/
+/Backend/tasktrek/dist/
+/Backend/tasktrek/nbdist/
+/Backend/tasktrek/.nb-gradle/
+/Backend/tasktrek/build/
+/Backend/tasktrek/!**/src/main/**/build/
+/Backend/tasktrek/!**/src/test/**/build/
+
+### VS Code ###
+/Backend/tasktrek/.vscode/
+
