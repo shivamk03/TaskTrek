@@ -29,19 +29,6 @@ public class SpringSecurity{
     private JwtFilter jwtFilter;
 
     @Bean
-    @Order(2)
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-
-        http.httpBasic(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
-                        httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests((requests ->requests.requestMatchers("/team/**")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()));
-        return http.build();
-    }
-
-    @Bean
     @Order(1)
     public SecurityFilterChain oAuthSecurityFilterChain(HttpSecurity http) throws Exception{
 
@@ -54,6 +41,18 @@ public class SpringSecurity{
         return http.build();
     }
 
+    @Bean
+    @Order(2)
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+
+        http.httpBasic(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
+                        httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests((requests ->requests.requestMatchers("/team/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()));
+        return http.build();
+    }
 
     @Bean
     public BCryptPasswordEncoder getPassWordEncoder() {
