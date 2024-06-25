@@ -1,4 +1,4 @@
-package com.trek.tasktrek;
+package com.trek.TaskTrek;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

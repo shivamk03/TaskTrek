@@ -22,37 +22,37 @@
 /Frontendyarn-debug.log*
 /Frontendyarn-error.log*
 
-/Backend/tasktrek/HELP.md
-/Backend/tasktrek/target/
-/Backend/tasktrek/.mvn/wrapper/maven-wrapper.jar
-/Backend/tasktrek/src/main/**/target/
-/Backend/tasktrek/src/test/**/target/
+/Backend/TaskTrek/HELP.md
+/Backend/TaskTrek/target/
+/Backend/TaskTrek/.mvn/wrapper/maven-wrapper.jar
+/Backend/TaskTrek/src/main/**/target/
+/Backend/TaskTrek/src/test/**/target/
 
 ### STS ###
-/Backend/tasktrek/.apt_generated
-/Backend/tasktrek/.classpath
-/Backend/tasktrek/.factorypath
-/Backend/tasktrek/.project
-/Backend/tasktrek/.settings
-/Backend/tasktrek/.springBeans
-/Backend/tasktrek/.sts4-cache
+/Backend/TaskTrek/.apt_generated
+/Backend/TaskTrek/.classpath
+/Backend/TaskTrek/.factorypath
+/Backend/TaskTrek/.project
+/Backend/TaskTrek/.settings
+/Backend/TaskTrek/.springBeans
+/Backend/TaskTrek/.sts4-cache
 
 ### IntelliJ IDEA ###
 /Backend/.idea
-/Backend/tasktrek/*.iws
-/Backend/tasktrek/*.iml
-/Backend/tasktrek/*.ipr
+/Backend/TaskTrek/*.iws
+/Backend/TaskTrek/*.iml
+/Backend/TaskTrek/*.ipr
 
 ### NetBeans ###
-/Backend/tasktrek/nbproject/private/
-/Backend/tasktrek/nbbuild/
-/Backend/tasktrek/dist/
-/Backend/tasktrek/nbdist/
-/Backend/tasktrek/.nb-gradle/
-/Backend/tasktrek/build/
-/Backend/tasktrek/!**/src/main/**/build/
-/Backend/tasktrek/!**/src/test/**/build/
+/Backend/TaskTrek/nbproject/private/
+/Backend/TaskTrek/nbbuild/
+/Backend/TaskTrek/dist/
+/Backend/TaskTrek/nbdist/
+/Backend/TaskTrek/.nb-gradle/
+/Backend/TaskTrek/build/
+/Backend/TaskTrek/!**/src/main/**/build/
+/Backend/TaskTrek/!**/src/test/**/build/
 
 ### VS Code ###
-/Backend/tasktrek/.vscode/
+/Backend/Tasktrek/.vscode/
 

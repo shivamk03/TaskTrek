@@ -1,4 +1,4 @@
-package com.trek.tasktrek.entity;
+package com.trek.TaskTrek.entity;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -15,21 +15,17 @@ import java.util.List;
 @Document
 @Getter
 @Setter
-public class User {
-   @Id
+public class Admin {
+    @Id
     private ObjectId id;
-   @NonNull
-    private String name;
-   @NonNull
-   @Indexed(unique = true)
-    private String email;
-   @NonNull
+    @NonNull
+    private String company;
+    @NonNull
+    @Indexed(unique = true)
+    private String username;
+    @NonNull
     private String password;
-    private List<String> roles = new ArrayList<>();
 
-    @DBRef
-    private List<String> taskEntries = new ArrayList<>();
-    public void setRole(String role){
-        roles.add(role);
-    }
+    @DBRef(lazy = true)
+    private List<TeamMembers> teamMembers = new ArrayList<>();
 }

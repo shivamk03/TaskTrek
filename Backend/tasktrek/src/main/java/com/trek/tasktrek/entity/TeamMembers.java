@@ -5,30 +5,30 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document
 @Getter
 @Setter
-public class Task {
+public class TeamMembers {
     @Id
     private ObjectId id;
     @NonNull
-    private String heading;
-    private String description;
+    @Indexed(unique = true)
+    private String company;
     @NonNull
-    private String category;
-    @NonNull
-    private Date start;
-    @NonNull
-    private Date end;
-    @NonNull
-    private String status;
-    private String taskComment;
+    @Indexed(unique = true)
+    private String username;
 
-    @DBRef(db = "teamMembers")
-    private TeamMembers teamMember;
+    @NonNull
+    private String password;
+
+    @DBRef
+    private List<Task> taskEntries = new ArrayList<>();
+
 }
