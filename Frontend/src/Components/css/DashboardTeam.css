@@ -1,0 +1,32 @@
+.dashboard {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .content {
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .card {
+    width: 90%;
+    height: 200px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-image: url("../../imageComponents/company-backgrouund.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+  }
+  
+  .card h1 {
+    margin: 0 0 10px 0;
+  }
+  
+  .card p {
+    margin: 0;
+    color: #555;
+  }
+  

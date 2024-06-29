@@ -16,7 +16,7 @@ export default function Navbar() {
         <ul>
             <li><Link to ='/about' className='nav-list-items'>Why TaskTrek</Link></li>
             <li><Link to ='/' className='nav-list-items'>Home</Link></li>
-            <li><Link to ='/' className='nav-list-items'>DashBoard</Link></li>
+            <li><Link to ='/dashteam' className='nav-list-items'>DashBoard</Link></li>
             <li><Link to ='/contact' className='nav-list-items'>Contact Us</Link></li>
         </ul>
       </div>

@@ -9,12 +9,16 @@ import SignupAdmin from "./Components/SignupAdmin";
 import SignInHandler from "./Components/SignInHandler";
 import Contact from "./Components/Contact";
 import WhyTaskTrek from "./Components/WhyTaskTrek";
+import DashboardTeam from "./Components/DashboardTeam";
 function App() {
   return (
     <BrowserRouter>
       <Navbar/>
       <Routes>
         <Route exact path = '/' element={<Index/>}></Route>
+        <Route exact path = '/dashteam' element={<DashboardTeam dashValue ="All"/>}></Route>
+        <Route exact path = '/dashteam/todo' element={<DashboardTeam dashValue ="Todo"/>}></Route>
+        <Route exact path = '/dashteam/done' element={<DashboardTeam dashValue ="Done"/>}></Route>
         <Route exact path = '/contact' element={<Contact/>}></Route>
         <Route exact path = '/login/admin' element={<LoginAdmin/>}></Route>
         <Route exact path = '/login/team' element={<Login/>}></Route>
