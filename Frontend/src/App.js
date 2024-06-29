@@ -19,6 +19,7 @@ function App() {
         <Route exact path = '/dashteam' element={<DashboardTeam dashValue ="All"/>}></Route>
         <Route exact path = '/dashteam/todo' element={<DashboardTeam dashValue ="Todo"/>}></Route>
         <Route exact path = '/dashteam/done' element={<DashboardTeam dashValue ="Done"/>}></Route>
+        <Route exact path = '/dashteam/detail' element={<DashboardTeam details ="true"/>}></Route>
         <Route exact path = '/contact' element={<Contact/>}></Route>
         <Route exact path = '/login/admin' element={<LoginAdmin/>}></Route>
         <Route exact path = '/login/team' element={<Login/>}></Route>

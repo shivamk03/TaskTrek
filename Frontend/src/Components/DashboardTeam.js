@@ -2,6 +2,7 @@ import React from 'react';
 import SidebarTeam from './SidebarTeam';
 import './css/DashboardTeam.css';
 import TaskCard from './TaskCard';
+import TaskDetail from './TaskDetail';
 
 const DashboardTeam = (props) => {
     const tasks = [{
@@ -35,7 +36,7 @@ const DashboardTeam = (props) => {
   return (
     <div className="dashboard">
       <SidebarTeam />
-      <div className="content">
+      {props.details?<TaskDetail/>: <div className="content">
         <div className="card">
           <h1>Company Name</h1>
         </div>
@@ -43,7 +44,9 @@ const DashboardTeam = (props) => {
         {tasks.map((task =>{
             return(<TaskCard key = {task.key} heading = {task.heading} end ={task.end} />);
         }))}
-      </div>
+        
+      </div>}
+      
     </div>
   );
 };
