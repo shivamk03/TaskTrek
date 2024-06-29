@@ -31,8 +31,6 @@ public class SpringSecurity{
     @Bean
     @Order(1)
     public SecurityFilterChain oAuthSecurityFilterChain(HttpSecurity http) throws Exception{
-
-
         http.csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
                 httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests((requests ->requests.requestMatchers("/admin/**","/task/**","/team/**")
@@ -44,7 +42,6 @@ public class SpringSecurity{
     @Bean
     @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-
         http.httpBasic(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests ->requests.requestMatchers("/team/**")
@@ -64,7 +61,6 @@ public class SpringSecurity{
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(adminServiceImplementation);
         authProvider.setPasswordEncoder(getPassWordEncoder());
-
         return authProvider;
     }
     @Bean

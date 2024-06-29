@@ -14,15 +14,15 @@ export default function Navbar() {
       </div>
       <div className="nav-list">
         <ul>
-            <li><Link to ='/' className='nav-list-items'>Why TaskTrek</Link></li>
+            <li><Link to ='/about' className='nav-list-items'>Why TaskTrek</Link></li>
             <li><Link to ='/' className='nav-list-items'>Home</Link></li>
             <li><Link to ='/' className='nav-list-items'>DashBoard</Link></li>
-            <li><Link to ='/' className='nav-list-items'>Contact Us</Link></li>
+            <li><Link to ='/contact' className='nav-list-items'>Contact Us</Link></li>
         </ul>
       </div>
       <div className="nav-auth">
         <ul>
-            {(!localStorage.getItem("logged"))?<li><Link to ='/login' id='nav-auth-btn'>Sign in</Link></li>:<li><Link to ='/' id='nav-auth-btn' onClick={handleSignOut}>Sign out</Link></li>}
+            {(!localStorage.getItem("logged"))?<li><Link to ='/login/handler' id='nav-auth-btn'>Sign in</Link></li>:<li><Link to ='/' id='nav-auth-btn' onClick={handleSignOut}>Sign out</Link></li>}
         </ul>
       </div>
     </div>

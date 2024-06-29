@@ -1,16 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./css/Login.css";
-
-export default function Signup() {
+export default function LoginAdmin() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     try {
-      const response = await fetch("http://localhost:8080/user/create-user", {
+      const response = await fetch("http://localhost:8080/user/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +24,6 @@ export default function Signup() {
         navigate("/home");
       }
       localStorage.setItem("logged",true);
-
     } catch (e) {
       console.log(e);
     }
@@ -41,28 +38,28 @@ export default function Signup() {
         />
       </div>
       <div className="login-form">
-        <h2>Welcome to TaskTrek</h2>
-        <p className="para">Get Started with your free Task management app.</p>
+        <h2>Log in with your admin credentials</h2>
+        <p className="para">To get started, please sign in and manage your team and tasks.</p>
         <form action="/" method="post" className="login-form">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">Username</label>
           <input type="text" name="email" id="email" className="login-fields" />
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             className="login-fields"
           />
           <input
             type="submit"
-            value="Sign up"
+            value="Sign in"
             className="login-fields"
             id="login-submit"
             onClick={handleSubmit}
           />
-          <p>Already have an account? Please Sign in</p>
-          <Link to="/login" className="signup-btn">
-            Sign in
+          <p>Don't have an account? Please Sign up</p>
+          <Link to="/signup/admin" className="signup-btn">
+            Sign up
           </Link>
         </form>
       </div>
