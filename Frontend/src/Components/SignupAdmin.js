@@ -9,24 +9,23 @@ export default function SignupAdmin() {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const company = document.getElementById("company").value;
     try {
-      const response = await fetch("http://localhost:8080/user/create-user", {
+      const response = await fetch("http://localhost:8080/admin/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email, password: password }),
+        body: JSON.stringify({ company:company,username: email, password: password }),
       });
       if (response.status == 404) {
         alert("Please enter the correct creadentials");
         console.log("Not found");
-        navigate("/signup");
+        navigate("/signup/admin");
       } else {
-        const json = await response.json();
-        navigate("/home");
+        alert("Admin registered, Please Log in");
+        navigate("/login/admin");
       }
-      localStorage.setItem("logged",true);
-
     } catch (e) {
       console.log(e);
     }
@@ -42,11 +41,22 @@ export default function SignupAdmin() {
       </div>
       <div className="login-form">
         <h2>Admin Sign up</h2>
-        <p className="para">Get Started with your TaskTrek journey. With a user-friendly interface, the app simplifies task delegation and enhances team collaboration, ensuring projects are completed on time and to the highest standards.
+        <p className="para">
+          Get Started with your TaskTrek journey. With a user-friendly
+          interface, the app simplifies task delegation and enhances team
+          collaboration, ensuring projects are completed on time and to the
+          highest standards.
         </p>
         <form action="/" method="post" className="login-form">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">Email Address/Username</label>
           <input type="text" name="email" id="email" className="login-fields" />
+          <label htmlFor="company">Company</label>
+          <input
+            type="text"
+            name="company"
+            id="company"
+            className="login-fields"
+          />
           <label htmlFor="password">Password</label>
           <input
             type="text"

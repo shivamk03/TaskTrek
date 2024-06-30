@@ -5,7 +5,6 @@ import './css/Navbar.css'
 export default function Navbar() {
   const handleSignOut = ()=>{
     localStorage.removeItem("logged");
-    console.log("removed succesfully");
   }
   return (
     <div className='nav'>

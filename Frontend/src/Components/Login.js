@@ -8,22 +8,21 @@ export default function Login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     try {
-      const response = await fetch("http://localhost:8080/user/", {
+      const response = await fetch("http://localhost:8080/team/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email, password: password }),
+        body: JSON.stringify({ username: email, password: password }),
       });
       if (response.status == 404) {
         alert("Please enter the correct creadentials");
-        console.log("Not found");
-        navigate("/signup");
+        navigate("/login/team");
       } else {
-        const json = await response.json();
-        navigate("/home");
+        // const json = await response.json();
+        localStorage.setItem("logged",true);
+        navigate("/dashteam");
       }
-      localStorage.setItem("logged",true);
     } catch (e) {
       console.log(e);
     }

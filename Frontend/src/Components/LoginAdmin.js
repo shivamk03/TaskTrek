@@ -8,22 +8,23 @@ export default function LoginAdmin() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     try {
-      const response = await fetch("http://localhost:8080/user/", {
+      const response = await fetch("http://localhost:8080/admin/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email, password: password }),
+        body: JSON.stringify({ username: email, password: password }),
       });
       if (response.status == 404) {
         alert("Please enter the correct creadentials");
-        console.log("Not found");
-        navigate("/signup");
+        navigate("/admin");
       } else {
         const json = await response.json();
-        navigate("/home");
+        localStorage.setItem("Authorization",`Bearer ${json.token}`);
+        localStorage.setItem("logged",true);
+        console.log(localStorage.getItem("Authorization"));
+        navigate("/dashadmin/");
       }
-      localStorage.setItem("logged",true);
     } catch (e) {
       console.log(e);
     }
