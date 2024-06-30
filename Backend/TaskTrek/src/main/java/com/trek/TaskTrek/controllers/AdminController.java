@@ -3,6 +3,7 @@ package com.trek.TaskTrek.controllers;
 import com.trek.TaskTrek.entity.Admin;
 import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
+import com.trek.TaskTrek.resultEntities.TokenClass;
 import com.trek.TaskTrek.services.AdminService;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
@@ -41,13 +42,16 @@ public class AdminController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+//    @Autowired
+//    private TokenClass token;
 
     @PostMapping("/")
     public ResponseEntity<?> login(@RequestBody Admin a){
         try{
             Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(a.getUsername(),a.getPassword()));
             String jwt = jwtUtil.generateToken(a.getUsername());
-            return new ResponseEntity<>(jwt, HttpStatus.OK);
+            TokenClass token = new TokenClass(jwt);
+            return new ResponseEntity<>(token, HttpStatus.OK);
         }catch(Exception e){
             System.out.println(e.getMessage());
             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
@@ -61,7 +65,6 @@ public class AdminController {
             Admin a = adminService.createUser(user);
             return new ResponseEntity<>(true,HttpStatus.OK);
         }catch(Exception e) {
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
         }
     }
