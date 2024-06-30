@@ -28,7 +28,7 @@
   }
   
   .form-group label {
-    display: block;
+    /* display: block; */
     margin-bottom: 5px;
     font-weight: bold;
   }
@@ -75,5 +75,11 @@
     .submit-button {
       font-size: 14px;
     }
+  }
+  label{
+    display: inline;
+  }
+  input[type = "text"]{
+    display: inline;
   }
   

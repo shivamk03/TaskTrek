@@ -42,7 +42,7 @@ const DashboardTeam = (props) => {
         </div>
         <h2>{props.dashValue} Tasks</h2>
         {tasks.map((task =>{
-            return(<TaskCard key = {task.key} heading = {task.heading} end ={task.end} />);
+            return(<TaskCard key = {task.id} heading = {task.heading} end ={task.end} />);
         }))}
         
       </div>}

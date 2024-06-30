@@ -10,12 +10,20 @@ import SignInHandler from "./Components/SignInHandler";
 import Contact from "./Components/Contact";
 import WhyTaskTrek from "./Components/WhyTaskTrek";
 import DashboardTeam from "./Components/DashboardTeam";
+import DashboardAdmin from "./Components/DashboardAdmin";
+import DashboardAdminTeam from "./Components/DashboardAdminTeam";
+import DashboardAdminTask from "./Components/DashboardAdminTask";
+import TaskDetail from "./Components/TaskDetail";
 function App() {
   return (
     <BrowserRouter>
       <Navbar/>
       <Routes>
         <Route exact path = '/' element={<Index/>}></Route>
+        <Route exact path = '/dashadmin' element={<DashboardAdmin/>}></Route>
+        <Route exact path = '/dashadmin/d' element={<DashboardAdmin details= "true"/>}></Route>
+        <Route exact path = '/dashadmin/addteam' element={<DashboardAdminTeam/>}></Route>
+        <Route exact path = '/dashadmin/add' element={<DashboardAdminTask/>}></Route>
         <Route exact path = '/dashteam' element={<DashboardTeam dashValue ="All"/>}></Route>
         <Route exact path = '/dashteam/todo' element={<DashboardTeam dashValue ="Todo"/>}></Route>
         <Route exact path = '/dashteam/done' element={<DashboardTeam dashValue ="Done"/>}></Route>

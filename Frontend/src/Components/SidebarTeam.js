@@ -1,7 +1,6 @@
 import React from 'react';
 import './css/SidebarTeam.css';
 import { Link } from 'react-router-dom';
-
 const SidebarTeam = () => {
   return (
     <div className="sidebar">
