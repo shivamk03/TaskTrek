@@ -18,8 +18,6 @@ import java.util.List;
 public class TeamMembers {
     @Id
     private ObjectId id;
-    @NonNull
-    @Indexed(unique = true)
     private String company;
     @NonNull
     @Indexed(unique = true)

@@ -22,6 +22,7 @@ export default function Navbar() {
       <div className="nav-auth">
         <ul>
             {(!localStorage.getItem("logged"))?<li><Link to ='/login/handler' id='nav-auth-btn'>Sign in</Link></li>:<li><Link to ='/' id='nav-auth-btn' onClick={handleSignOut}>Sign out</Link></li>}
+            {/* <li><Link to ='/' id='nav-auth-btn' onClick={handleSignOut}>Sign out</Link></li> */}
         </ul>
       </div>
     </div>

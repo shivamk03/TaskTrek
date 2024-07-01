@@ -22,7 +22,6 @@ export default function LoginAdmin() {
         const json = await response.json();
         localStorage.setItem("Authorization",`Bearer ${json.token}`);
         localStorage.setItem("logged",true);
-        console.log(localStorage.getItem("Authorization"));
         navigate("/dashadmin/");
       }
     } catch (e) {

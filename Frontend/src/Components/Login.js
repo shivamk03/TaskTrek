@@ -19,7 +19,9 @@ export default function Login() {
         alert("Please enter the correct creadentials");
         navigate("/login/team");
       } else {
-        // const json = await response.json();
+        const json = await response.json();
+        localStorage.setItem("team-user",json.username);
+        localStorage.setItem("team-pass",json.password);
         localStorage.setItem("logged",true);
         navigate("/dashteam");
       }

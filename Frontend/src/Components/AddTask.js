@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './css/Contact.css';
+import AdminContext from '../Context/AdminContext';
+import { useNavigate } from 'react-router-dom';
 
 const AddTask = () => {
-  const teams = [{
-    id:1,
-    username:"new user 1"
-  },{
-    id:2,
-    username:"new user 2"
-  },{
-    id:3,
-    username:"new user 3"
-  }]
+  const navigate = useNavigate();
+  const data = useContext(AdminContext);
+  const {state,addTask}= data;
+
   const [formData, setFormData] = useState({
     heading: '',
     description:'',
@@ -27,8 +23,22 @@ const AddTask = () => {
   };
 
   const handleSubmit = (e) => {
+    try{
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+    const values = document.getElementsByClassName('inputs');
+    console.log(values);
+    for(let i=0;i<values.length;i++){
+      if(values[i].checked){
+        const value = values[i].value;
+        console.log(value);
+        let res =addTask(value, document.getElementById('end').value, document.getElementById('heading').value, document.getElementById('description').value);
+      }
+    }
+    alert("Added");
+    navigate("/dashadmin")
+  }catch(e){
+    console.lag(e);
+  }
   };
 
   return (
@@ -38,7 +48,7 @@ const AddTask = () => {
       <form onSubmit={handleSubmit} className="contact-form">
         <h2>Add Task for members</h2>
         <div className="form-group">
-          {teams.map(team=>{
+          {state.map(team=>{
             return (<><label for={team.id}>{team.username}</label><input type='radio' key ={team.id} value={team.username} name={team.id} id={team.id} className='inputs'/></>);
           })}
         </div>

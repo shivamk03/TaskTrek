@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useEffect,useContext } from 'react';
 import './css/DashboardAdmin.css';
 import SidebarAdmin from './SidebarAdmin';
 import TeamCard from './TeamCard'
 import TeamDetail from './TeamDetail';
+import { useNavigate } from 'react-router-dom';
+import AdminContext from '../Context/AdminContext';
 
 const DashboardAdmin = (props) => {
-    const team = [{
-      id:1,
-        username:"new user 1"
-    },{
-      id:2,
-        username:"new user 2"
-    },{
-      id:3,
-       username:"new user 3"
-    }]
+  const navigate = useNavigate();
+  const data = useContext(AdminContext);
+  const {state,getTeam} = data;
+  useEffect(() => {
+    if (!localStorage.getItem("Authorization")) {
+      alert("Session Timeout");
+      const timeout = setTimeout(() => navigate("/admin/login"),0);
+      return () => clearTimeout(timeout);
+    }
+    getTeam();
+  },[]);
   return (
     <div className="dashboard">
       <SidebarAdmin />
       {props.details==="true"?<TeamDetail/>:<div className="content">
         <div className="card-admin">
-          <h1>Company Name</h1>
+          <h1>Tech Mahindra</h1>
         </div>
         <h2>The Team</h2>
-        {team.map((team =>{
+        {state.map((team =>{
             return(<TeamCard key = {team.id} username={team.username} />);
         }))}
         

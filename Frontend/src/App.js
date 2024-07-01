@@ -13,10 +13,12 @@ import DashboardTeam from "./Components/DashboardTeam";
 import DashboardAdmin from "./Components/DashboardAdmin";
 import DashboardAdminTeam from "./Components/DashboardAdminTeam";
 import DashboardAdminTask from "./Components/DashboardAdminTask";
-import TaskDetail from "./Components/TaskDetail";
+import AdminState from "./Context/AdminState";
+import DashboardAdminAllTask from "./Components/DashboardAdminAllTask";
 function App() {
   return (
     <BrowserRouter>
+    <AdminState>
       <Navbar/>
       <Routes>
         <Route exact path = '/' element={<Index/>}></Route>
@@ -24,6 +26,7 @@ function App() {
         <Route exact path = '/dashadmin/d' element={<DashboardAdmin details= "true"/>}></Route>
         <Route exact path = '/dashadmin/addteam' element={<DashboardAdminTeam/>}></Route>
         <Route exact path = '/dashadmin/add' element={<DashboardAdminTask/>}></Route>
+        <Route exact path = '/dashadmin/all' element={<DashboardAdminAllTask/>}></Route>
         <Route exact path = '/dashteam' element={<DashboardTeam dashValue ="All"/>}></Route>
         <Route exact path = '/dashteam/todo' element={<DashboardTeam dashValue ="Todo"/>}></Route>
         <Route exact path = '/dashteam/done' element={<DashboardTeam dashValue ="Done"/>}></Route>
@@ -36,6 +39,7 @@ function App() {
         <Route exact path = '/about' element={<WhyTaskTrek/>}></Route>
       </Routes>
       <Footer/>
+      </AdminState>
     </BrowserRouter>
   );
 }

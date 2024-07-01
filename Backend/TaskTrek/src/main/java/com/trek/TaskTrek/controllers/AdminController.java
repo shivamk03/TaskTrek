@@ -92,6 +92,7 @@ public class AdminController {
             return new ResponseEntity<>(res,HttpStatus.OK);
         }catch(Exception e){
             System.out.println(e.getMessage());
+
             return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
         }
 
@@ -122,6 +123,7 @@ public class AdminController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             t.setEnd(sdf.parse(date));
             t.setStart(new Date());
+            t.setStatus("false");
             TeamMembers member = teamService.fetchUserByUsername(username);
             t.setTeamMember(member);
             Task Db_t =taskService.addTask(t);
