@@ -42,9 +42,9 @@ public class SpringSecurity{
     @Bean
     @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.httpBasic(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
+        http.csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests((requests ->requests.requestMatchers("/team/**")
+                .authorizeHttpRequests((requests ->requests.requestMatchers("/team/**","/task/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated()));

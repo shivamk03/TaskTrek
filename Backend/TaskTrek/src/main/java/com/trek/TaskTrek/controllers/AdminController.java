@@ -8,6 +8,7 @@ import com.trek.TaskTrek.services.AdminService;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
 import com.trek.TaskTrek.utils.JwtUtil;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -125,11 +126,9 @@ public class AdminController {
             t.setStart(new Date());
             t.setStatus("false");
             TeamMembers member = teamService.fetchUserByUsername(username);
-            t.setTeamMember(member);
             Task Db_t =taskService.addTask(t);
-            TeamMembers teamMember = teamService.fetchUserByUsername(username);
-            teamMember.getTaskEntries().add(Db_t);
-            teamService.createTeamMember(teamMember);
+            member.getTaskEntries().add(Db_t);
+            teamService.createTeamMember(member);
             return new ResponseEntity<>(true, HttpStatus.OK);
         }catch(Exception e){
             System.out.println(e.getMessage());

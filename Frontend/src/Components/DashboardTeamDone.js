@@ -1,16 +1,16 @@
 import React from 'react';
 import SidebarTeam from './SidebarTeam';
 import './css/DashboardTeam.css';
-import TaskCard from './TaskCard';
 import TaskDetail from './TaskDetail';
 import { useNavigate } from 'react-router-dom';
 import TeamMemberContext from '../Context/TeamMemberContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useEffect } from 'react';
 
-const DashboardTeam = (props) => {
+const DashboardTeamDone = (props) => {
   const navigate = useNavigate();
   const data = useContext(TeamMemberContext);
+  const [todo,settodo] = useState([]);
   const {state,fetchAllTasks} = data;
   useEffect(() => {
     if (!localStorage.getItem("logged")) {
@@ -19,8 +19,15 @@ const DashboardTeam = (props) => {
       return () => clearTimeout(timeout);
     }
     fetchAllTasks();
-    console.log(state.heading)
+    state.map(s=>{
+      if(s.status==="true"){
+        let temp = todo;
+        temp.push(s);
+        settodo(temp);
+      }
+    })
   },[]);
+
   return (
     <div className="dashboard">
       <SidebarTeam />
@@ -28,8 +35,8 @@ const DashboardTeam = (props) => {
         <div className="card">
           <h1>Company Name</h1>
         </div>
-        <h2>{props.dashValue} Tasks</h2>
-        {state.map((task =>{
+        <h2>To Tasks</h2>
+        {todo.map((task =>{
             return(<TaskDetail key = {task.id} heading = {task.heading} end ={task.end} description={task.description} status={task.status} taskComment = {task.taskCommentcomment} start ={task.start}/>);
         }))}
         
@@ -39,4 +46,4 @@ const DashboardTeam = (props) => {
   );
 };
 
-export default DashboardTeam;
+export default DashboardTeamDone;

@@ -20,6 +20,7 @@ export default function Login() {
         navigate("/login/team");
       } else {
         const json = await response.json();
+        console.log(json.username);
         localStorage.setItem("team-user",json.username);
         localStorage.setItem("team-pass",json.password);
         localStorage.setItem("logged",true);

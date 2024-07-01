@@ -25,7 +25,9 @@ export default function AllTasks() {
       {Object.entries(state).map(t=>{
         return(<div className='task-card'>
             <h4>{t[0]}</h4>
-            <p>{t[1]}</p>
+            {t[1].map(e=>{
+              <p>{e}</p>
+            })}
         </div>)
       })}
     </div>

@@ -26,7 +26,7 @@ public class TeamMembers {
     @NonNull
     private String password;
 
-    @DBRef
+    @DBRef(lazy = true)
     private List<Task> taskEntries = new ArrayList<>();
 
 }

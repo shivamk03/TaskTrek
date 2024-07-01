@@ -8,10 +8,10 @@ export default function TaskDetail(props) {
         <p>start : {props.start}</p>
         <p>end :{props.end}</p>
         <br />
-        <p>{props.description}</p>
+        <p>Description: {props.description}</p>
         <br />
-        {props.status!= undefined ?<><br /><p>{props.status}</p><br /></>:""}
-        {props.comment!= undefined ?<><br /><p>{props.comment}</p><br /></>:""}
+        {props.status!= undefined ?<><br /><p>Status: {props.status}</p><br /></>:""}
+        {props.comment!= undefined ?<><br /><p>Comment: {props.comment}</p><br /></>:""}
         <div className="cont-details">
           <label htmlFor="comment">Add Comment</label>
           <input type="text" />

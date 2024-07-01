@@ -29,6 +29,4 @@ public class Task {
     private String status;
     private String taskComment;
 
-    @DBRef(db = "teamMembers")
-    private TeamMembers teamMember;
 }

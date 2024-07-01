@@ -1,8 +1,11 @@
 package com.trek.TaskTrek.controllers;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
+import com.trek.TaskTrek.resultEntities.TeamMemberResult;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,13 +24,14 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("team")
 public class TeamMembersController {
-    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(15);
     @Autowired
     private TeamMembersService service;
 
     @Autowired
     private TaskService taskService;
 
+    ObjectMapper mapper = new ObjectMapper();
     @PostMapping("/")
     public ResponseEntity<?> login(@RequestBody TeamMembers a){
         try{
@@ -44,13 +51,16 @@ public class TeamMembersController {
     @PostMapping("/fetchAll")
     public ResponseEntity<?> fetchAllTasks(@RequestBody TeamMembers teamMember){
         try{
+            DateFormat obj = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
             TeamMembers t = service.fetchUserByUsername(teamMember.getUsername());
             List<Task> entries = t.getTaskEntries();
             List<Task> result = new ArrayList<>();
-            for(Task id :entries){
-                result.add(taskService.fetchTaskById(id.getId()));
+            for(Task task :entries){
+                Task T = taskService.fetchTaskById((task.getId()));
+                result.add(T);
             }
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            String json = mapper.writeValueAsString(result);
+            return new ResponseEntity<>(json, HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
