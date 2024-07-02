@@ -30,7 +30,7 @@ const DashboardTeam = (props) => {
         </div>
         <h2>{props.dashValue} Tasks</h2>
         {state.map((task =>{
-            return(<TaskDetail key = {task.id} heading = {task.heading} end ={task.end} description={task.description} status={task.status} taskComment = {task.taskCommentcomment} start ={task.start}/>);
+            return(<TaskDetail id ={task.id}key = {task.id} heading = {task.heading} end ={task.end} description={task.description} status={task.status} taskComment = {task.taskCommentcomment} start ={task.start}/>);
         }))}
         
       </div>}
