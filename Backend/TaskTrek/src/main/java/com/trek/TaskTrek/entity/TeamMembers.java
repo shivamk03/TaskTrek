@@ -28,5 +28,6 @@ public class TeamMembers {
 
     @DBRef(lazy = true)
     private List<Task> taskEntries = new ArrayList<>();
+//    private List<ObjectId> taskEntries = new ArrayList<>();
 
 }

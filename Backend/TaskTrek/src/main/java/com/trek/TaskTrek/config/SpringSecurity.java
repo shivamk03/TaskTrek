@@ -1,8 +1,11 @@
 package com.trek.TaskTrek.config;
 
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.trek.TaskTrek.filter.JwtFilter;
 import com.trek.TaskTrek.services.AdminServiceImplementation;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -67,4 +70,9 @@ public class SpringSecurity{
     public static AuthenticationManager authenticationManagerBean(AuthenticationConfiguration auth) throws Exception {
         return auth.getAuthenticationManager();
     }
+//    @Bean
+//    public Jackson2ObjectMapperBuilderCustomizer customizer()
+//    {
+//        return builder -> builder.serializerByType(ObjectId.class,new ToStringSerializer());
+//    }
 }

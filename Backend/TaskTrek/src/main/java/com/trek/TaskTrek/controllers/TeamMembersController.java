@@ -2,10 +2,8 @@ package com.trek.TaskTrek.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
-import com.trek.TaskTrek.resultEntities.TeamMemberResult;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,6 +57,7 @@ public class TeamMembersController {
                 Task T = taskService.fetchTaskById((task.getId()));
                 result.add(T);
             }
+
             String json = mapper.writeValueAsString(result);
             return new ResponseEntity<>(json, HttpStatus.OK);
         }catch(Exception e){
