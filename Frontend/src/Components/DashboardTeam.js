@@ -1,7 +1,6 @@
 import React from 'react';
 import SidebarTeam from './SidebarTeam';
 import './css/DashboardTeam.css';
-import TaskCard from './TaskCard';
 import TaskDetail from './TaskDetail';
 import { useNavigate } from 'react-router-dom';
 import TeamMemberContext from '../Context/TeamMemberContext';

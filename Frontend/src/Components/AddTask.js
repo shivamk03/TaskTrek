@@ -31,7 +31,7 @@ const AddTask = () => {
       if(values[i].checked){
         const value = values[i].value;
         console.log(value);
-        let res =addTask(value, document.getElementById('end').value, document.getElementById('heading').value, document.getElementById('description').value);
+        addTask(value, document.getElementById('end').value, document.getElementById('heading').value, document.getElementById('description').value);
       }
     }
     alert("Added");
