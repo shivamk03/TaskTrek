@@ -49,7 +49,7 @@ const AddTask = () => {
         <h2>Add Task for members</h2>
         <div className="form-group">
           {state.map(team=>{
-            return (<><label for={team.id}>{team.username}</label><input type='radio' key ={team.id} value={team.username} name={team.id} id={team.id} className='inputs'/></>);
+            return (<><label htmlFor={team.id}>{team.username}</label><input type='radio' key ={team.id} value={team.username} name={team.id} id={team.id} className='inputs'/></>);
           })}
         </div>
         <div className="form-group">

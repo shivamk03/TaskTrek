@@ -25,11 +25,6 @@
     text-align: center;
     border-radius: 5px;
 }
-/* .nav-list-items{
-    display: block;
-    padding: 10px;
-
-} */
 .nav-list-items:hover{
     text-decoration: underline;
     text-decoration-color: #1a73e8;

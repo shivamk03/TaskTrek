@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AdminContext from '../Context/AdminContext'
 import { useNavigate } from 'react-router-dom';
+import SmallBox from './SmallBox';
 
 export default function AllTasks() {
     const navigate = useNavigate();
@@ -18,15 +19,20 @@ export default function AllTasks() {
       const getTask=async()=>{
         let res = await getAllTask();
         setState(res);
-        console.log(state);
+        // console.log(state);
+        Object.entries(state).map(e=>{
+          Object.entries(e[1]).map(t=>{
+            console.log(t[1].id)
+          })
+        })
       }
      return (
     <div className="content">
       {Object.entries(state).map(t=>{
-        return(<div className='task-card'>
+        return(<div className='' key ={t[0]}>
             <h4>{t[0]}</h4>
-            {t[1].map(e=>{
-              <p>{e}</p>
+            {Object.entries(t[1]).map(e=>{
+              return(<SmallBox key ={e[0]} heading = {e[1].heading} description = {e[1].description} status = {e[1].status} comment = {e[1].commet}/>);
             })}
         </div>)
       })}

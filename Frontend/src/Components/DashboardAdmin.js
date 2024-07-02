@@ -27,7 +27,7 @@ const DashboardAdmin = (props) => {
         </div>
         <h2>The Team</h2>
         {state.map((team =>{
-            return(<TeamCard key = {team.id} username={team.username} />);
+            return(<TeamCard key = {team.username} username={team.username} />);
         }))}
         
       </div>}

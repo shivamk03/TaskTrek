@@ -35,7 +35,7 @@ const DashboardTeamDone = (props) => {
         <div className="card">
           <h1>Company Name</h1>
         </div>
-        <h2>To Tasks</h2>
+        <h2>Done Tasks</h2>
         {todo.map((task =>{
             return(<TaskDetail key = {task.id} heading = {task.heading} end ={task.end} description={task.description} status={task.status} taskComment = {task.taskCommentcomment} start ={task.start}/>);
         }))}

@@ -19,7 +19,6 @@ const DashboardTeam = (props) => {
       return () => clearTimeout(timeout);
     }
     fetchAllTasks();
-    console.log(state.heading)
   },[]);
   return (
     <div className="dashboard">
