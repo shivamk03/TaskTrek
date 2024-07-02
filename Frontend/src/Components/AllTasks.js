@@ -19,7 +19,6 @@ export default function AllTasks() {
       const getTask=async()=>{
         let res = await getAllTask();
         setState(res);
-        // console.log(state);
         Object.entries(state).map(e=>{
           Object.entries(e[1]).map(t=>{
             console.log(t[1].id)
