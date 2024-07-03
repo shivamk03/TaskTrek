@@ -21,7 +21,7 @@ public class JwtUtil {
     public String extractUsername(String token){
         return extractAllClaims(token).getSubject();
     }
-
+    
     private Claims extractAllClaims(String token){
         return  Jwts.parser().verifyWith(getSignKey()).build().parseSignedClaims(token).getPayload();
     }
