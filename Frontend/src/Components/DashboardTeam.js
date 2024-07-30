@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import TeamMemberContext from '../Context/TeamMemberContext';
 import { useContext } from 'react';
 import { useEffect } from 'react';
+import TaskCard from './TaskCard';
 
 const DashboardTeam = (props) => {
   const navigate = useNavigate();
   const data = useContext(TeamMemberContext);
-  const {state,fetchAllTasks} = data;
+  const {state,fetchAllTasks,fetchCompany, company} = data;
   useEffect(() => {
     if (!localStorage.getItem("logged")) {
       alert("Session Timeout");
@@ -18,17 +19,19 @@ const DashboardTeam = (props) => {
       return () => clearTimeout(timeout);
     }
     fetchAllTasks();
+    fetchCompany();
   },[]);
   return (
     <div className="dashboard">
       <SidebarTeam />
       {props.details?<TaskDetail/>: <div className="content">
         <div className="card">
-          <h1>Company Name</h1>
+          <h1>{company.company}</h1>
         </div>
-        <h2>{props.dashValue} Tasks</h2>
+        <h2>{props.dashValue} Upcoming Tasks</h2>
         {state.map((task =>{
-            return(<TaskDetail id ={task.id}key = {task.id} heading = {task.heading} end ={task.end} description={task.description} status={task.status} taskComment = {task.taskCommentcomment} start ={task.start}/>);
+          if(task.t.status==="false")
+            return(<TaskCard button="Detailed View"id ={task.t.id}key = {task.t.id} heading = {task.t.heading} end ={task.end} description={task.t.description} status={task.t.status} taskComment = {task.t.taskCommentcomment} start ={task.start}/>);
         }))}
         
       </div>}

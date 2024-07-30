@@ -22,7 +22,8 @@ public class TeamMembers {
     @NonNull
     @Indexed(unique = true)
     private String username;
-
+    private String name;
+    private String role;
     @NonNull
     private String password;
 

@@ -6,6 +6,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class TaskService {
     @Autowired
@@ -21,6 +23,7 @@ public class TaskService {
 
     public boolean updateStatus(ObjectId id, String status){
         Task t = rep.findTaskById(id);
+        t.setComplete(new Date());
         if(t==null){
             return false;
         }

@@ -8,7 +8,9 @@ const AddTeam = () => {
   const data = useContext(AdminContext);
   const {addTeamMember}= data;
   const [formData, setFormData] = useState({
-    username: ''
+    username: '',
+    name:'',
+    role:''
   });
 
   const handleChange = (e) => {
@@ -21,8 +23,7 @@ const AddTeam = () => {
 
   const handleAddTeam = (e) => {
     e.preventDefault();
-    console.log(document.getElementById("username").value);
-    const res =addTeamMember(document.getElementById("username").value);
+    const res =addTeamMember(document.getElementById("username").value,document.getElementById("name").value);
     if(res){
       alert("Team Member added");
       navigate('/dashadmin');
@@ -45,6 +46,28 @@ const AddTeam = () => {
             id="username"
             name="username"
             value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="role">Role</label>
+          <input
+            type="text"
+            id="role"
+            name="role"
+            value={formData.role}
             onChange={handleChange}
             required
           />

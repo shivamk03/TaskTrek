@@ -6,7 +6,7 @@ export default function SmallBox(props) {
       <p>Heading : {props.heading}</p>
       <p>Description : {props.description}</p>
       <p>Status: {props.status}</p>
-      <p>Comment by Team Mate: {props.comment}</p>
+      {props.comment?<p>Comment by Team Mate: {props.comment}</p>:""}
     </div>
   )
 }

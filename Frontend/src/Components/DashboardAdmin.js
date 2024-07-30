@@ -10,6 +10,7 @@ const DashboardAdmin = (props) => {
   const navigate = useNavigate();
   const data = useContext(AdminContext);
   const {state,getTeam} = data;
+  const role = props.role==null?'':props.role;
   useEffect(() => {
     if (!localStorage.getItem("Authorization")) {
       alert("Session Timeout");
@@ -27,7 +28,7 @@ const DashboardAdmin = (props) => {
         </div>
         <h2>The Team</h2>
         {state.map((team =>{
-            return(<TeamCard key = {team.username} username={team.username} />);
+            return(<TeamCard key = {team.username} role={role} username={team.username} name ={team.name}/>);
         }))}
         
       </div>}

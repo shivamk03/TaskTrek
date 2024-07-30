@@ -1,0 +1,23 @@
+.content-all{
+    padding: 20px;
+    width: 100%;
+}
+.done > h1{
+    color: green;
+}
+.notDone> h1{
+    margin-top: 100px;
+    color: Red;
+}
+.all-container-detail{
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+.smallbox-container{
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+
+}

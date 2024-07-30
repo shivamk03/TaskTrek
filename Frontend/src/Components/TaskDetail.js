@@ -8,7 +8,7 @@ export default function TaskDetail(props) {
   const {updateComment} = data;
   const handleClick=async(e)=>{
     e.preventDefault();
-    const comment = document.getElementById("comment").ariaValueMax;
+    const comment = document.getElementById("comment").value;
     await updateComment(props.id,comment);
     alert("Status Updated");
     navigate('/dashteam')
@@ -17,16 +17,13 @@ export default function TaskDetail(props) {
     <div className="detailsContainer">
       <div className="cont">
         <h2>{props.heading}</h2>
-        <p>start : {props.start}</p>
-        <p>end :{props.end}</p>
+        <p><span>Description:</span> {props.description}</p>
         <br />
-        <p>Description: {props.description}</p>
-        <br />
-        {props.status!= undefined ?<><br /><p>Status: {props.status}</p><br /></>:""}
-        {props.comment!= undefined ?<><br /><p>Comment: {props.comment}</p><br /></>:""}
+        <p><span>Assigned Date:</span> {props.start.substring(0,11)} {props.start.substring(24,28)}  at {props.start.substring(11,19)}</p>
+        <p><span>Deadline:</span> {props.end.substring(0,11)} {props.end.substring(24,28)}  at {props.end.substring(11,19)}</p>
+        <label htmlFor="comment" id="label">Add Comment:</label>
         <div className="cont-details">
-          <label htmlFor="comment">Add Comment</label>
-          <input type="text" id="comment"/>
+          <textarea type="text" id="comment"/>
           <button type="submit" onClick={handleClick}>Post</button>
         </div>
       </div>

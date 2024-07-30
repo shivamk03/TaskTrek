@@ -1,9 +1,37 @@
 .task-card{
     width: 80%;
-    height: 80px;
+    height: 100px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
+}
+.bold{
+    font-weight: bold;
+}
+.task-card-task{
+    width: 80%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+.detailedView{
+    padding: 10px;
+    border-radius: 5px;
+    border: 0px solid ;
+    background-color: #1a73e8; 
+    color: white;
+    cursor: pointer;
+}
+.para-team>span{
+    font-weight: bold;
+}
+#status{
+    color: green;
+}
+#label{
+    font-weight: bold;
 }

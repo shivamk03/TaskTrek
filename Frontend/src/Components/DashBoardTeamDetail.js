@@ -4,15 +4,13 @@ import './css/DashboardTeam.css';
 import TaskDetail from './TaskDetail';
 import { useNavigate } from 'react-router-dom';
 import TeamMemberContext from '../Context/TeamMemberContext';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useEffect } from 'react';
-import TaskCard from './TaskCard';
 
-const DashboardTeamToDo = (props) => {
+const DashboardTeamDetail = () => {
   const navigate = useNavigate();
   const data = useContext(TeamMemberContext);
-  const [todo,settodo] = useState([]);
-  const {state,fetchAllTasks, company} = data;
+  const {state,fetchAllTasks,fetchCompany, company, currentTask} = data;
   useEffect(() => {
     if (!localStorage.getItem("logged")) {
       alert("Session Timeout");
@@ -20,31 +18,25 @@ const DashboardTeamToDo = (props) => {
       return () => clearTimeout(timeout);
     }
     fetchAllTasks();
-    state.map(s=>{
-      if(s.t.status==="false"){
-        let temp = todo;
-        temp.push(s);
-        settodo(temp);
-      }
-    })
   },[]);
-
   return (
     <div className="dashboard">
       <SidebarTeam />
-      {props.details?<TaskDetail/>: <div className="content">
+      <div className="content">
         <div className="card">
           <h1>{company.company}</h1>
         </div>
-        <h2>Assigned Tasks</h2>
-        {todo.map((task =>{
-            return(<TaskCard button ="Update Status" key = {task.t.id} heading = {task.t.heading} end ={task.end} description={task.t.description} status={task.t.status} start ={task.start}/>);
-        }))}
+        <h2>Task Details</h2>
+        {state.map((task =>{
+          if(task.t.heading===currentTask)
+            return(<TaskDetail id ={task.t.id}key = {task.t.id} heading = {task.t.heading} complete = {task.t.complete} end ={task.end} description={task.t.description} status={task.t.status} taskComment = {task.t.taskCommentcomment} start ={task.start}/>);
+        }))
+        }
         
-      </div>}
+      </div>
       
     </div>
   );
 };
 
-export default DashboardTeamToDo;
+export default DashboardTeamDetail;

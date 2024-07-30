@@ -1,6 +1,7 @@
 package com.trek.TaskTrek.controllers;
 
 import com.trek.TaskTrek.entity.Task;
+import com.trek.TaskTrek.services.EmailSenderService;
 import com.trek.TaskTrek.services.TaskService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class TaskController {
     @Autowired
     private TaskService service;
 
+    @Autowired
+    EmailSenderService senderService;
 
     @PostMapping("/update-status/{id}")
     public ResponseEntity<?> updateTask(@RequestBody Task t, @PathVariable ObjectId id){

@@ -27,6 +27,7 @@ public class Task {
     private Date start;
     @NonNull
     private Date end;
+    private Date complete;
     @NonNull
     private String status;
     private String taskComment;

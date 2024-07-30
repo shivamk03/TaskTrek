@@ -11,7 +11,8 @@ const AddTask = () => {
   const [formData, setFormData] = useState({
     heading: '',
     description:'',
-    end:''
+    end:'',
+    date :''
   });
 
   const handleChange = (e) => {
@@ -31,19 +32,17 @@ const AddTask = () => {
       if(values[i].checked){
         const value = values[i].value;
         console.log(value);
-        addTask(value, document.getElementById('end').value, document.getElementById('heading').value, document.getElementById('description').value);
+        let str = document.getElementById('end').value;
+        addTask(value, str, document.getElementById('heading').value, document.getElementById('description').value);
       }
     }
     alert("Added");
     navigate("/dashadmin")
   }catch(e){
-    console.lag(e);
+    console.log(e);
   }
   };
-
   return (
-
-
     <div className="contact-form-container">
       <form onSubmit={handleSubmit} className="contact-form">
         <h2>Add Task for members</h2>
@@ -74,10 +73,21 @@ const AddTask = () => {
             required
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="end">End Date(yyyy-mm-dd)</label>
           <input
             type="text"
+            id="end"
+            name="end"
+            value={formData.end}
+            onChange={handleChange}
+            required
+          />
+        </div> */}
+        <div className="form-group">
+          <label htmlFor="end">End Date(yyyy-mm-dd)</label>
+          <input
+            type="datetime-local"
             id="end"
             name="end"
             value={formData.end}

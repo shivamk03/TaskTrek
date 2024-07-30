@@ -18,6 +18,9 @@ import DashboardAdminAllTask from "./Components/DashboardAdminAllTask";
 import TeamMemberState from "./Context/TeamMemebrState";
 import DashboardTeamToDo from './Components/DashboardTeamToDo';
 import DashboardTeamDone from "./Components/DashboardTeamDone";
+import DashboardAdminDetail from "./Components/DashBoardAdminDetail";
+import DashboardTeamDetail from "./Components/DashBoardTeamDetail";
+import DashboardTeamSearch from "./Components/DashBoardTeamSearch";
 function App() {
   return (
     <BrowserRouter>
@@ -28,14 +31,15 @@ function App() {
       <Routes>
         <Route exact path = '/' element={<Index/>}></Route>
         <Route exact path = '/dashadmin' element={<DashboardAdmin/>}></Route>
-        <Route exact path = '/dashadmin/d' element={<DashboardAdmin details= "true"/>}></Route>
+        <Route exact path = '/dashadmin/d' element={<DashboardAdminDetail />}></Route>
         <Route exact path = '/dashadmin/addteam' element={<DashboardAdminTeam/>}></Route>
         <Route exact path = '/dashadmin/add' element={<DashboardAdminTask/>}></Route>
         <Route exact path = '/dashadmin/all' element={<DashboardAdminAllTask/>}></Route>
         <Route exact path = '/dashteam' element={<DashboardTeam dashValue ="All"/>}></Route>
         <Route exact path = '/dashteam/todo' element={<DashboardTeamToDo dashValue ="Todo"/>}></Route>
         <Route exact path = '/dashteam/done' element={<DashboardTeamDone dashValue ="Done"/>}></Route>
-        <Route exact path = '/dashteam/detail' element={<DashboardTeam details ="true"/>}></Route>
+        <Route exact path = '/dashteam/detail' element={<DashboardTeamDetail />}></Route>
+        <Route exact path = '/dashteam/search' element={<DashboardTeamSearch />}></Route>
         <Route exact path = '/contact' element={<Contact/>}></Route>
         <Route exact path = '/login/admin' element={<LoginAdmin/>}></Route>
         <Route exact path = '/login/team' element={<Login/>}></Route>

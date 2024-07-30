@@ -20,13 +20,59 @@
     background-size:cover;
     background-repeat:no-repeat;
   }
-  
+  .card-search{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
   .card h1 {
     margin: 0 0 10px 0;
   }
-  
+  .criteria{
+    height: 30px;
+  }
+  .criteria>label{
+    font-size: 20px;
+    margin-right: 20px;
+  }
   .card p {
     margin: 0;
     color: #555;
   }
-  
+  #criteria{
+    height: 30px;
+    width: 150px;
+  }
+  .search-submit>button{
+    background-color: #1a73e8; 
+    color:white;
+    height: 30px;
+    cursor: pointer;
+    border: 0px solid;
+    border-radius: 5px;
+  }
+  .heading-container{
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .date{
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .label-search{
+    font-size: 20px;
+  }
+  #startDate{
+    height: 30px;
+  }
+  #endDate{
+    height: 30px;
+  }

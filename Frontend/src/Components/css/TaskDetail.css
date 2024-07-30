@@ -7,9 +7,8 @@
     width: 100%;
 }
 .cont{
-    width: 60%;
-    padding: 10px;
-    max-height: 100vh;
+    width: 80%;
+    padding: 30px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -18,18 +17,29 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-.cont-details> input{
+.cont-details> textarea{
     border-radius: 5px;
     width: 100%;
-    height: 30px;
+    height: 80px;
     margin-top: 10px;
 }
 .cont-details> button{
+    font-size: 20px;
+    text-align: center;
     background-color: #1a73e8;
     border-radius: 5px;
-    width: 100%;
+    width: 30%;
     height: 30px;
     margin-top: 10px;
     color: white;
+    border: 0px solid;
+    cursor: pointer;
+}
+.cont>p>span{
+    font-weight: bold;
+}
+#label{
+    font-weight: bold;
 }

@@ -2,6 +2,8 @@ package com.trek.TaskTrek.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
+import com.trek.TaskTrek.resultEntities.CompanyResponse;
+import com.trek.TaskTrek.resultEntities.TaskResult;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,19 +53,39 @@ public class TeamMembersController {
             DateFormat obj = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
             TeamMembers t = service.fetchUserByUsername(teamMember.getUsername());
             List<Task> entries = t.getTaskEntries();
-            List<Task> result = new ArrayList<>();
+            List<TaskResult> result = new ArrayList<>();
+
             for(Task task :entries){
                 Task T = taskService.fetchTaskById((task.getId()));
-                result.add(T);
-            }
+                if(T.getComplete()==null){
+                    TaskResult tsk = new TaskResult(T,T.getStart().toString(),T.getEnd().toString(),null);
+                    result.add(tsk);
+                }
+                else {
+                    TaskResult tsk = new TaskResult(T, T.getStart().toString(), T.getEnd().toString(), T.getComplete().toString());
+                    result.add(tsk);
+                }
 
+            }
             String json = mapper.writeValueAsString(result);
             return new ResponseEntity<>(json, HttpStatus.OK);
         }catch(Exception e){
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
+    @PostMapping("/fetchCompany")
+    public ResponseEntity<?> FetchCompany(@RequestBody TeamMembers t){
+        try{
+            TeamMembers new_t = service.fetchUserByUsername(t.getUsername());
+            CompanyResponse c = new CompanyResponse(new_t.getCompany());
+
+            return new ResponseEntity<>(c, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
 }

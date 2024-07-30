@@ -3,7 +3,9 @@
     justify-content: center;
     min-height: 100vh;
   }
-  
+.content> h2{
+  color: #1a73e8; 
+}
   .content {
     padding: 20px;
     width: 100%;

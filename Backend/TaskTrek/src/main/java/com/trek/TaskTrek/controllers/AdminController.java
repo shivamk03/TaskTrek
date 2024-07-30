@@ -5,6 +5,7 @@ import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
 import com.trek.TaskTrek.resultEntities.TokenClass;
 import com.trek.TaskTrek.services.AdminService;
+import com.trek.TaskTrek.services.EmailSenderService;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
 import com.trek.TaskTrek.utils.JwtUtil;
@@ -28,6 +29,9 @@ public class AdminController {
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(15);
 
     @Autowired
+    private EmailSenderService senderService;
+
+    @Autowired
     private AdminService adminService;
 
     @Autowired
@@ -42,8 +46,6 @@ public class AdminController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-//    @Autowired
-//    private TokenClass token;
 
     @PostMapping("/")
     public ResponseEntity<?> login(@RequestBody Admin a){
@@ -89,6 +91,7 @@ public class AdminController {
             t.setPassword(password);
             t.setCompany(a.getCompany());
             boolean res = adminService.addTeamMember(t,a);
+            senderService.teamMemberAddGeneration(t.getUsername(), a.getCompany());
             return new ResponseEntity<>(res,HttpStatus.OK);
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -128,6 +131,7 @@ public class AdminController {
             Task Db_t =taskService.addTask(t);
             member.getTaskEntries().add(Db_t);
             teamService.createTeamMember(member);
+            senderService.taskGenerationEmail(username, "Task Generated", t.getHeading(), t.getDescription(),t.getEnd());
             return new ResponseEntity<>(true, HttpStatus.OK);
         }catch(Exception e){
             System.out.println(e.getMessage());
