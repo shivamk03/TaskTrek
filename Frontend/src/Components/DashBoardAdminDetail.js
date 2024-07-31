@@ -105,6 +105,8 @@ const DashboardAdmin = (props) => {
                             status={e[1].status}
                             comment={e[1].taskComment}
                             complete={e[1].complete}
+                            start ={e[1].start}
+                            end={e[1].end}
                           />
                         </>
                       );
