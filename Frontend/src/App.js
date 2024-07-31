@@ -50,7 +50,6 @@ function App() {
         <Route exact path = '/about' element={<WhyTaskTrek/>}></Route>
       </Routes>
       <Footer/>
-      
     </TeamMemberState>
       </AdminState>
     </BrowserRouter>
