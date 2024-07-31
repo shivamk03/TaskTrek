@@ -27,12 +27,13 @@ const AddTask = () => {
     try {
       e.preventDefault();
       const values = document.getElementsByClassName("inputs");
-      console.log(values);
       for (let i = 0; i < values.length; i++) {
         if (values[i].checked) {
           const value = values[i].value;
-          console.log(value);
           let str = document.getElementById("end").value;
+          str = str.replace("T"," ");
+          str+=":00";
+          console.log(str);
           addTask(
             value,
             str,
@@ -78,7 +79,7 @@ const AddTask = () => {
             <br />
             {state.map((team) => {
               return (
-                <>
+                <div key={team.id}>
                   <label htmlFor={team.id}>{team.username}</label>
                   <input
                     type="radio"
@@ -89,7 +90,7 @@ const AddTask = () => {
                     
                     className="inputs"
                   />
-                </>
+                </div>
               );
             })}
           </div>
@@ -116,21 +117,10 @@ const AddTask = () => {
             required
           />
         </div>
-        {/* <div className="form-group">
-          <label htmlFor="end">End Date(yyyy-mm-dd)</label>
-          <input
-            type="text"
-            id="end"
-            name="end"
-            value={formData.end}
-            onChange={handleChange}
-            required
-          />
-        </div> */}
         <div className="form-group">
           <label htmlFor="end">End Date</label>
           <input
-            type="date"
+            type="datetime-local"
             id="end"
             name="end"
             value={formData.end}

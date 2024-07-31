@@ -13,7 +13,7 @@ const DashboardAdminSearch = (props) => {
     currentSelection: "startDate",
   });
 
-  //storing data into this state from the context
+  //place storing data into this state from the context
   const [stateTask, setStateTask] = useState({});
 
   const [state, setState] = useState({});

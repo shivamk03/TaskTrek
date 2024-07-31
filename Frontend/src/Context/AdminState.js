@@ -40,7 +40,7 @@ const AdminState = (props) => {
   }
   
   const addTask=async(user, date, heading, description)=>{
-    const url = `http://localhost:8080/admin/addTask/${user}/${date} 00:00:00`;
+    const url = `http://localhost:8080/admin/addTask/${user}/${date}`;
     const response = await fetch(url, {
       method: "POST",
       headers: {

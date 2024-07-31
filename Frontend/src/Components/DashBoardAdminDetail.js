@@ -73,6 +73,8 @@ const DashboardAdmin = (props) => {
                             description={e[1].description}
                             status={e[1].status}
                             comment={e[1].taskComment}
+                            start ={e[1].start}
+                            end={e[1].end}
                             complete={e[1].complete}
                           />
                         </>

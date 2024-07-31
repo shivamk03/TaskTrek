@@ -41,7 +41,7 @@ export default function SmallBox(props) {
       {props.start ? (
         <p>
           <span className="bold">Assigned date: </span>
-          {props.start.substring(0, 10)}
+          {props.start.substring(0, 10) + " at "+props.start.substring(12,20)}
         </p>
       ) : (
         ""
@@ -49,7 +49,7 @@ export default function SmallBox(props) {
       {props.end ? (
         <p>
           <span className="bold">Deadline on: </span>
-          {props.end.substring(0, 10)}
+          {props.end.substring(0, 10) + " at "+props.end.substring(12,20)}
         </p>
       ) : (
         ""
@@ -57,7 +57,7 @@ export default function SmallBox(props) {
       {props.complete ? (
         <p>
           <span className="bold">Submitted on: </span>
-          {props.complete.substring(0, 10)}
+          {props.complete.substring(0, 10) + " at "+props.complete.substring(12,20)}
         </p>
       ) : (
         ""
