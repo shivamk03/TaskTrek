@@ -9,6 +9,8 @@ export default function AllTasks() {
   const data = useContext(AdminContext);
   const { getAllTask } = data;
   const [state, setState] = useState({});
+  const [pending, setPending] = useState({val:true});
+  const [complete, setComplete] = useState({val:true});
   useEffect(() => {
     if (!localStorage.getItem("Authorization")) {
       alert("Session Timeout");
@@ -31,7 +33,10 @@ export default function AllTasks() {
             return (
               <div className="smallbox-container" key={t[0]}>
                 {Object.entries(t[1]).map((e) => {
-                  if (e[1].status === "true")
+                  if (e[1].status === "true"){
+                    if(complete.val==true){
+                      setComplete(false);
+                    }
                     return (
                       <>
                         <h4>Member Name : {t[0]}</h4>
@@ -49,11 +54,12 @@ export default function AllTasks() {
                           start = {e[1].start}
                         />
                       </>
-                    );
+                    );}
                 })}
               </div>
             );
           })}
+          {complete.val==true?<h4>No Tasks</h4>:''}
         </div>
       </div>
       <div className="notDone">
@@ -63,7 +69,10 @@ export default function AllTasks() {
             return (
               <div className="smallbox-container" key={t[0]}>
                 {Object.entries(t[1]).map((e) => {
-                  if (e[1].status === "false")
+                  if (e[1].status === "false"){
+                    if(pending.val==true){
+                      setPending(false);
+                    }
                     return (
                       <>
                         <h4>Member Name : {t[0]}</h4>
@@ -78,8 +87,9 @@ export default function AllTasks() {
                           start = {e[1].start}
                         />
                       </>
-                    );
+                    );}
                 })}
+                {pending.val==true?<h4>No Tasks</h4>:''}
               </div>
             );
           })}

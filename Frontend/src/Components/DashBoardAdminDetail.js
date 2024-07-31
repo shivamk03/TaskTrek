@@ -12,6 +12,8 @@ const DashboardAdmin = (props) => {
     const { state, getAllTask, getCurrentTeamMember , removeMember} = data;
     const [stateTemp, setState] = useState({});
     const [current, updateCurrent] = useState({curr:''});
+    const [pending, setPending] = useState({val:true});
+    const [complete, setComplete] = useState({val:true});
   useEffect(() => {
     if (!localStorage.getItem("Authorization")) {
         alert("Session Timeout");
@@ -53,9 +55,12 @@ const DashboardAdmin = (props) => {
           <h4 className="heading">Completed Tasks</h4>
           {Object.entries(stateTemp).map((t) => {
               return (
-                  <div className="" key={t[0]}>
+                <div className="" key={t[0]}>
                 {Object.entries(t[1]).map((e) => {
-                    if(t[0]===current.curr && e[1].status==="true")
+                    if(t[0]===current.curr && e[1].status==="true"){
+                      if(complete.val==true){
+                        setComplete(false);
+                      }
                         return (
                     <>
                         <SmallBox
@@ -67,19 +72,23 @@ const DashboardAdmin = (props) => {
                           complete = {e[1].complete}
                         />
                       </>
-                    );
+                    );}
                 })}
               </div>
             );
           })}
+          {complete.val==true?<h4>No Tasks</h4>:''}
         </div>
         <div className="all-container-detail">
         <h4 className="heading-p">Pending Tasks</h4>
-          {Object.entries(state).map((t) => {
+          {Object.entries(stateTemp).map((t) => {
               return (
                   <div className="" key={t[0]}>
                 {Object.entries(t[1]).map((e) => {
-                    if(t[0]===current.curr && e[1].status==='false')
+                    if(t[0]===current.curr && e[1].status==='false'){
+                      if(pending.val==true){
+                        setPending(false);
+                      }
                         return (
                     <>
                         <SmallBox
@@ -91,11 +100,12 @@ const DashboardAdmin = (props) => {
                           complete = {e[1].complete}
                         />
                       </>
-                    );
+                    );}
                 })}
               </div>
             );
           })}
+          {pending.val==true?<h4>No Tasks</h4>:''}
         </div>
       </div>
       </div>
