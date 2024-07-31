@@ -14,6 +14,7 @@ export default function SmallBox(props) {
   };
   return (
     <div className="smallbox">
+      {props.memberName?<h4>Member name : {props.memberName}</h4>:''}
       {props.status === "true" ? (
         <h4>
           Status: <span className="statusSpanC">Completed</span>
