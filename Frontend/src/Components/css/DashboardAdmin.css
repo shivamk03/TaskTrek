@@ -3,8 +3,31 @@
     justify-content: center;
     min-height: 100vh;
   }
+  .dashboard-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .member-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 .content> h2{
   color: #1a73e8; 
+}
+.all-container-detail{
+  margin-bottom: 10px;
+  /* background-color: #f8f9fa; */
+  padding: 10px;
+}
+.smallbox{
+  background-color: #f8f9fa;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
 }
   .content {
     padding: 20px;
@@ -31,4 +54,15 @@
     margin: 0;
     color: #555;
   }
-  
+  .statusSpanC{
+    color: green;
+  }
+  .statusSpanP{
+    color: red;
+  }
+  .heading{
+    color: green;
+  }
+  .heading-p{
+    color: red;
+  }

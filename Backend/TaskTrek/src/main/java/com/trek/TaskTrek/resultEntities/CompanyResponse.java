@@ -1,8 +1,10 @@
 package com.trek.TaskTrek.resultEntities;
 
+import com.trek.TaskTrek.entity.TeamMembers;
+
 public class CompanyResponse {
-    public String company;
-    public CompanyResponse(String company){
-        this.company= company;
+    private String company;
+    public CompanyResponse(String t){
+        this.company= t;
     }
 }

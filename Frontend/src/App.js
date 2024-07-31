@@ -21,6 +21,7 @@ import DashboardTeamDone from "./Components/DashboardTeamDone";
 import DashboardAdminDetail from "./Components/DashBoardAdminDetail";
 import DashboardTeamDetail from "./Components/DashBoardTeamDetail";
 import DashboardTeamSearch from "./Components/DashBoardTeamSearch";
+import DashboardAdminSearch from "./Components/DashBoardAdminSearch";
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route exact path = '/' element={<Index/>}></Route>
         <Route exact path = '/dashadmin' element={<DashboardAdmin/>}></Route>
+        <Route exact path = '/dashadmin/search' element={<DashboardAdminSearch/>}></Route>
         <Route exact path = '/dashadmin/d' element={<DashboardAdminDetail />}></Route>
         <Route exact path = '/dashadmin/addteam' element={<DashboardAdminTeam/>}></Route>
         <Route exact path = '/dashadmin/add' element={<DashboardAdminTask/>}></Route>

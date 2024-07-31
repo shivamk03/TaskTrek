@@ -9,14 +9,17 @@
     margin-top: 100px;
     color: Red;
 }
-.all-container-detail{
-    margin-bottom: 10px;
-    background-color: #f8f9fa;
+.deleteTask{
+    background-color: #1a73e8; 
+    color: white;
+    border: 0px;
+    border-radius: 5px;
     padding: 10px;
+    cursor: pointer;
 }
 .smallbox-container{
     margin-bottom: 10px;
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     padding: 10px;
     border-radius: 10px;
 

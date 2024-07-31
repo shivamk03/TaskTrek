@@ -6,7 +6,7 @@ import AdminContext from '../Context/AdminContext';
 const AddTeam = () => {
   const navigate = useNavigate();
   const data = useContext(AdminContext);
-  const {addTeamMember}= data;
+  const {addTeamMember, getTeam}= data;
   const [formData, setFormData] = useState({
     username: '',
     name:'',
@@ -23,16 +23,16 @@ const AddTeam = () => {
 
   const handleAddTeam = (e) => {
     e.preventDefault();
-    const res =addTeamMember(document.getElementById("username").value,document.getElementById("name").value);
+    const res =addTeamMember(document.getElementById("username").value,document.getElementById("name").value, document.getElementById('role').value);
     if(res){
       alert("Team Member added");
+      getTeam();
       navigate('/dashadmin');
     }
     else{
       alert("Some error occurred");
       navigate('/dashadmin')
     }
-
   };
 
   return (

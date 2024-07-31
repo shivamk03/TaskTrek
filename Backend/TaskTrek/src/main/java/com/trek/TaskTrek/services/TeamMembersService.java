@@ -4,6 +4,7 @@ import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
 import com.trek.TaskTrek.repositories.TaskRepository;
 import com.trek.TaskTrek.repositories.TeamMembersRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,7 +38,16 @@ public class TeamMembersService {
         return user;
 
     }
-
+    public boolean deleteById(ObjectId id){
+        try{
+            rep.deleteById(id);
+            return true;
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
     public List<Task>  fetchTaskEntriesByUsername(String username){
         TeamMembers t = fetchUserByUsername(username);
         return t.getTaskEntries();

@@ -1,5 +1,7 @@
 package com.trek.TaskTrek.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -17,6 +19,7 @@ import java.util.List;
 @Setter
 public class TeamMembers {
     @Id
+    @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     private String company;
     @NonNull

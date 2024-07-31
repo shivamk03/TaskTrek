@@ -37,6 +37,7 @@ public class AdminService {
         List<Optional<TeamMembers>> teamMemberDetails = new ArrayList<>();
         for(TeamMembers t : teamMembers){
             teamMemberDetails.add(t_rep.findById(t.getId()));
+
         }
         return teamMemberDetails;
     }

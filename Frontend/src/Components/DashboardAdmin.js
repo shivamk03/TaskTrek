@@ -24,11 +24,10 @@ const DashboardAdmin = (props) => {
       <SidebarAdmin />
       {props.details==="true"?<TeamDetail/>:<div className="content">
         <div className="card-admin">
-          <h1>Tech Mahindra</h1>
         </div>
         <h2>The Team</h2>
         {state.map((team =>{
-            return(<TeamCard key = {team.username} role={role} username={team.username} name ={team.name}/>);
+            return(<TeamCard key = {team.username} role={team.role} username={team.username} name ={team.name}/>);
         }))}
         
       </div>}

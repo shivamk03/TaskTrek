@@ -20,7 +20,8 @@ const TeamMemberState = (props) => {
       return tasks;
   };
   const fetchCompany=async ()=>{
-    const url = `http://localhost:8080/team/fetchCompany`;
+    try{
+      const url = `http://localhost:8080/team/fetchCompany`;
     const user = localStorage.getItem("team-user");
     const response = await fetch(url, {
       method: "POST",
@@ -32,6 +33,11 @@ const TeamMemberState = (props) => {
     let n_company= await response.json();
       setCompany(n_company);
       return company;
+    }
+    catch(e){
+      console.log(e);
+    }
+    
   }
   const updateComment=async(id,comment)=>{
     await updateStatus(id);

@@ -40,5 +40,14 @@ public class TaskService {
         rep.save(t);
         return true;
     }
+    public boolean deleteById(ObjectId id){
+        try {
+            rep.deleteById(id);
+            return true;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }
 

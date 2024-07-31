@@ -11,6 +11,7 @@ const SidebarAdmin = () => {
         <li><Link to="/dashadmin/addteam">Add team member</Link></li>
         <li><Link to="/dashadmin/add">Add task</Link></li>
         <li><Link to="/dashadmin/all" >Fetch All tasks</Link></li>
+        <li><Link to="/dashadmin/search" >Search</Link></li>
       </ul>
     </div>
   );

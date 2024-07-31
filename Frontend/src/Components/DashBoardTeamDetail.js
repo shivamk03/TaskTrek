@@ -29,7 +29,7 @@ const DashboardTeamDetail = () => {
         <h2>Task Details</h2>
         {state.map((task =>{
           if(task.t.heading===currentTask)
-            return(<TaskDetail id ={task.t.id}key = {task.t.id} heading = {task.t.heading} complete = {task.t.complete} end ={task.end} description={task.t.description} status={task.t.status} taskComment = {task.t.taskCommentcomment} start ={task.start}/>);
+            return(<TaskDetail id ={task.t.id}key = {task.t.id} heading = {task.t.heading} complete = {task.t.complete} end ={task.end} description={task.t.description} status={task.t.status} taskComment = {task.t.taskComment} start ={task.start}/>);
         }))
         }
         

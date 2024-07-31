@@ -9,6 +9,7 @@ import com.trek.TaskTrek.services.EmailSenderService;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
 import com.trek.TaskTrek.utils.JwtUtil;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -137,6 +138,26 @@ public class AdminController {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
         }
-
     }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteTask(@PathVariable ObjectId id){
+        try {
+            boolean res = taskService.deleteById(id);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
+        }
+    }
+    @DeleteMapping("/delete/team/{id}")
+    public ResponseEntity<?> deleteTeamMember(@PathVariable ObjectId id){
+        try{
+            teamService.deleteById(id);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

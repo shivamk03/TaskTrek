@@ -29,7 +29,7 @@ export default function AllTasks() {
         <div className="all-container">
           {Object.entries(state).map((t) => {
             return (
-              <div className="" key={t[0]}>
+              <div className="smallbox-container" key={t[0]}>
                 {Object.entries(t[1]).map((e) => {
                   if (e[1].status === "true")
                     return (
@@ -38,11 +38,15 @@ export default function AllTasks() {
                 
                         <SmallBox
                           key={e[0]}
+                          id={e[1].id}
                           name ={e[0].name}
                           heading={e[1].heading}
                           description={e[1].description}
                           status={e[1].status}
-                          comment={e[1].commet}
+                          comment={e[1].taskComment}
+                          complete = {e[1].complete}
+                          end ={e[1].end}
+                          start = {e[1].start}
                         />
                       </>
                     );
@@ -65,10 +69,13 @@ export default function AllTasks() {
                         <h4>Member Name : {t[0]}</h4>
                         <SmallBox
                           key={e[0]}
+                          id={e[1].id}
                           heading={e[1].heading}
                           description={e[1].description}
                           status={e[1].status}
                           comment={e[1].commet}
+                          end ={e[1].end}
+                          start = {e[1].start}
                         />
                       </>
                     );

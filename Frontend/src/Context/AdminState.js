@@ -25,7 +25,7 @@ const AdminState = (props) => {
   const getCurrentTeamMember=()=>{
     return currentTeamMember;
   }
-  const addTeamMember=async(username,name)=>{
+  const addTeamMember=async(username,name,role)=>{
     const url = `http://localhost:8080/admin/add-member`;
     const response = await fetch(url, {
       method: "POST",
@@ -33,13 +33,14 @@ const AdminState = (props) => {
         "Content-Type": "application/json",
         "Authorization": localStorage.getItem("Authorization"),
       },
-      body: JSON.stringify({username:username,name:name})
+      body: JSON.stringify({username:username,name:name, role:role})
     });
     let res= await response.json();
     return res;
   }
+  
   const addTask=async(user, date, heading, description)=>{
-    const url = `http://localhost:8080/admin/addTask/${user}/${date}`;
+    const url = `http://localhost:8080/admin/addTask/${user}/${date} 00:00:00`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -65,6 +66,37 @@ const AdminState = (props) => {
     setTask(res);
     return res;
   }
-  return <AdminContext.Provider value={{state,getTeam,addTeamMember,addTask,getAllTask, task, changeTeamMember, getCurrentTeamMember}}>{props.children}</AdminContext.Provider>;
+  const deleteTask=async(id)=>{
+    const url = `http://localhost:8080/admin/delete/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem("Authorization"),
+      }
+    });
+
+    let res= await response.json();
+    console.log(res);
+    await getAllTask();
+    return res;
+  }
+  const removeMember=async(id)=>{
+    const url = `http://localhost:8080/admin/delete/team/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem("Authorization"),
+      }
+    });
+
+    let res= await response.json();
+    console.log(res);
+    await getAllTask();
+    return res;
+  }
+  
+  return <AdminContext.Provider value={{state,getTeam,addTeamMember,addTask,getAllTask, task, changeTeamMember, getCurrentTeamMember, deleteTask, removeMember}}>{props.children}</AdminContext.Provider>;
 };
 export default AdminState;
