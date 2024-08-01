@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./css/Contact.css";
 import AdminContext from "../Context/AdminContext";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ const AddTask = () => {
   const data = useContext(AdminContext);
   const { state, addTask } = data;
 
+
   const [formData, setFormData] = useState({
     heading: "",
     description: "",
@@ -15,6 +16,18 @@ const AddTask = () => {
     date: "",
   });
 
+  const [minDate, setMinDate] = useState('');
+
+  useEffect(() => {
+    if (!localStorage.getItem("Authorization")) {
+      alert("Session Timeout");
+      const timeout = setTimeout(() => navigate("/admin/login"), 0);
+      return () => clearTimeout(timeout);
+    }
+    let currentDate = new Date();
+    currentDate=currentDate.toISOString().substring(0,19).replace("T"," ");
+    setMinDate(currentDate);
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -33,7 +46,6 @@ const AddTask = () => {
           let str = document.getElementById("end").value;
           str = str.replace("T"," ");
           str+=":00";
-          console.log(str);
           addTask(
             value,
             str,
@@ -49,10 +61,9 @@ const AddTask = () => {
     }
   };
 
-  const handleClick=(e)=>{
+  const handleClickSearch=(e)=>{
     e.preventDefault();
     var user = document.getElementById('user').value;
-    
     var check = false;
     for(var i =0;i<state.length;i++){
       if(state[i].username===user){
@@ -74,7 +85,7 @@ const AddTask = () => {
           <div className="user-container">
             <label htmlFor="user">Search user: </label>
             <input type="text" name="user" id="user" />
-            <button onClick={handleClick} className="user-search-btn">Search</button>
+            <button onClick={handleClickSearch} className="user-search-btn">Search</button>
             <br />
             <br />
             {state.map((team) => {
@@ -125,6 +136,7 @@ const AddTask = () => {
             name="end"
             value={formData.end}
             onChange={handleChange}
+            min={minDate}
             required
           />
         </div>

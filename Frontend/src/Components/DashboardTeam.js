@@ -19,7 +19,7 @@ const DashboardTeam = (props) => {
       return () => clearTimeout(timeout);
     }
     fetchAllTasks();
-    fetchCompany();
+    // fetchCompany();
   },[]);
   return (
     <div className="dashboard">

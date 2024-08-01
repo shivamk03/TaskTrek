@@ -58,7 +58,7 @@ export default function Navbar() {
         <ul>
           {!localStorage.getItem("logged") ? (
             <li>
-              <Link to="/login/handler" id="nav-auth-btn">
+              <Link to="/login" id="nav-auth-btn">
                 Sign in
               </Link>
             </li>

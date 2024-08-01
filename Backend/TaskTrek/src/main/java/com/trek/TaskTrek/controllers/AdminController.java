@@ -3,7 +3,7 @@ package com.trek.TaskTrek.controllers;
 import com.trek.TaskTrek.entity.Admin;
 import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
-import com.trek.TaskTrek.resultEntities.TokenClass;
+import com.trek.TaskTrek.resultEntities.AdminResult;
 import com.trek.TaskTrek.services.AdminService;
 import com.trek.TaskTrek.services.EmailSenderService;
 import com.trek.TaskTrek.services.TaskService;
@@ -25,6 +25,7 @@ import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+
 @RequestMapping("admin")
 public class AdminController {
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(15);
@@ -53,7 +54,7 @@ public class AdminController {
         try{
             Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(a.getUsername(),a.getPassword()));
             String jwt = jwtUtil.generateToken(a.getUsername());
-            TokenClass token = new TokenClass(jwt);
+            AdminResult token = new AdminResult(jwt);
             return new ResponseEntity<>(token, HttpStatus.OK);
         }catch(Exception e){
             System.out.println(e.getMessage());

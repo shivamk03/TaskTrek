@@ -16,7 +16,6 @@ const DashboardTeamSearch = (props) => {
   });
   const [searchRes, setSerachRes] = useState([]);
   const { state, fetchAllTasks, fetchCompany, company } = data;
-  var details = false;
   useEffect(() => {
     if (!localStorage.getItem("logged")) {
       alert("Session Timeout");
@@ -24,7 +23,6 @@ const DashboardTeamSearch = (props) => {
       return () => clearTimeout(timeout);
     }
     fetchAllTasks();
-    fetchCompany();
   }, []);
   function formatDate(date) {
     var d = new Date(date),
@@ -38,6 +36,7 @@ const DashboardTeamSearch = (props) => {
     return [year, month, day].join("-");
   }
   const handleChange = () => {
+    setSerachRes([]);
     setSelection({
       currentSelection: document.getElementById("criteria").value,
     });
@@ -47,6 +46,9 @@ const DashboardTeamSearch = (props) => {
     evt.preventDefault();
     var searches = [];
     const e = document.getElementById("startDate").value;
+    if(e===""){
+      alert("Please enter the heading");
+    } 
     state.map((task) => {
       var date =
         task.start.substring(0, 10) + "," + task.start.substring(24, 28);
@@ -58,6 +60,9 @@ const DashboardTeamSearch = (props) => {
     evt.preventDefault();
     var searches = [];
     const e = document.getElementById("endDate").value;
+    if(e===""){
+      alert("Please enter the heading");
+    }
     state.map((task) => {
       var date = task.end.substring(0, 10) + "," + task.end.substring(24, 28);
       if (formatDate(date) === e) searches.push(task);
@@ -68,6 +73,9 @@ const DashboardTeamSearch = (props) => {
     evt.preventDefault();
     var searches = [];
     const e = document.getElementById("heading").value;
+    if(e===""){
+      alert("Please enter the heading");
+    }
     state.map((task) => {
       if (task.t.heading === e) searches.push(task);
     });
@@ -78,13 +86,10 @@ const DashboardTeamSearch = (props) => {
     var searches = [];
     state.map((task) => {
       if (task.t.status === "true") {
-        console.log("inside");
-        // console.log(task)
         searches.push(task);
       }
     });
     setSerachRes(searches);
-    console.log(searchRes);
   };
   const handlePending = (evt) => {
     evt.preventDefault();

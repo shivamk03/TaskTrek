@@ -4,6 +4,7 @@ import com.trek.TaskTrek.entity.Task;
 import com.trek.TaskTrek.entity.TeamMembers;
 import com.trek.TaskTrek.resultEntities.CompanyResponse;
 import com.trek.TaskTrek.resultEntities.TaskResult;
+import com.trek.TaskTrek.resultEntities.TeamResult;
 import com.trek.TaskTrek.services.TaskService;
 import com.trek.TaskTrek.services.TeamMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,8 @@ public class TeamMembersController {
             TeamMembers entry = service.fetchUserByUsername(a.getUsername());
             boolean matched = passwordEncoder.matches(a.getPassword(),entry.getPassword());
             if(matched){
-                return new ResponseEntity<>(entry, HttpStatus.OK);
+                TeamResult res = new TeamResult(entry);
+                return new ResponseEntity<>(res, HttpStatus.OK);
             }
             return new ResponseEntity<>(null,HttpStatus.NOT_ACCEPTABLE);
         }catch(Exception e){

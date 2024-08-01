@@ -11,7 +11,7 @@ import TaskCard from './TaskCard';
 const DashboardTeamDone = (props) => {
   const navigate = useNavigate();
   const data = useContext(TeamMemberContext);
-  const [todo,settodo] = useState([]);
+  const [done,setDone] = useState([]);
   const {state,fetchAllTasks, company} = data;
   useEffect(() => {
     if (!localStorage.getItem("logged")) {
@@ -22,9 +22,9 @@ const DashboardTeamDone = (props) => {
     fetchAllTasks();
     state.map(s=>{
       if(s.t.status==="true"){
-        let temp = todo;
+        let temp = done;
         temp.push(s);
-        settodo(temp);
+        setDone(temp);
       }
     })
   },[]);
@@ -37,8 +37,8 @@ const DashboardTeamDone = (props) => {
           <h1>{company.company}</h1>
         </div>
         <h2>Done Tasks</h2>
-        {todo.map((task =>{
-            return(<><TaskCard buttonView = {false} done="true" complete = {task.complete}key = {task.t.id} heading = {task.t.heading} end ={task.end} description={task.t.description} status={task.t.status} taskComment = {task.t.taskComment} start ={task.start}/></>);
+        {done.map((task =>{
+            return(<><TaskCard buttonView = {false} done="true" complete = {task.complete} key = {task.t} heading = {task.t.heading} end ={task.end} description={task.t.description} status={task.t.status} taskComment = {task.t.taskComment} start ={task.start}/></>);
         }))}
         
       </div>}

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./css/Login.css";
 export default function Login() {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export default function Login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     try {
-      const response = await fetch("http://localhost:8080/team/", {
+      const response = await fetch("http://localhost:8080/general/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,16 +17,22 @@ export default function Login() {
       });
       if (response.status == 404) {
         alert("Please enter the correct creadentials");
-        navigate("/login/team");
+        navigate("/login");
       } else {
         const json = await response.json();
-        console.log(json.username);
-        localStorage.setItem("team-user",json.username);
-        localStorage.setItem("team-pass",json.password);
-        localStorage.setItem("logged",true);
-        navigate("/dashteam");
+        if (json.userType === "admin") {
+          localStorage.setItem("Authorization", `Bearer ${json.token}`);
+          localStorage.setItem("logged", true);
+          navigate("/dashadmin/");
+        } else {
+          localStorage.setItem("team-user", json.member.username);
+          // localStorage.setItem("team-pass", json.member.password);
+          localStorage.setItem("logged", true);
+          navigate("/dashteam");
+        }
       }
     } catch (e) {
+      alert("Some error Occurred");
       console.log(e);
     }
   };
@@ -40,8 +46,10 @@ export default function Login() {
         />
       </div>
       <div className="login-form">
-        <h2>Team Member Log in</h2>
-        <p className="para">To get started, please sign in</p>
+        <h2>Log in with your credentials</h2>
+        <p className="para">
+          To get started, please sign in and manage your tasks.
+        </p>
         <form action="/" method="post" className="login-form">
           <label htmlFor="email">Username</label>
           <input type="text" name="email" id="email" className="login-fields" />
@@ -59,6 +67,10 @@ export default function Login() {
             id="login-submit"
             onClick={handleSubmit}
           />
+          <p>Don't have an account? Please Sign up</p>
+          <Link to="/signup/admin" className="signup-btn">
+            Sign up
+          </Link>
         </form>
       </div>
     </div>

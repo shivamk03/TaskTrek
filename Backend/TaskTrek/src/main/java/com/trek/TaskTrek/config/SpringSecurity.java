@@ -36,7 +36,7 @@ public class SpringSecurity{
     public SecurityFilterChain oAuthSecurityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
                 httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                        .authorizeHttpRequests((requests ->requests.requestMatchers("/admin/**","/task/**","/team/**")
+                        .authorizeHttpRequests((requests ->requests.requestMatchers("/admin/**","/task/**","/team/**","/general/**")
                 .permitAll())).authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
@@ -47,7 +47,7 @@ public class SpringSecurity{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable).sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests((requests ->requests.requestMatchers("/team/**","/task/**")
+                .authorizeHttpRequests((requests ->requests.requestMatchers("/team/**","/task/**","/general/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated()));

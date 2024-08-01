@@ -23,7 +23,13 @@ const AddTeam = () => {
 
   const handleAddTeam = (e) => {
     e.preventDefault();
-    const res =addTeamMember(document.getElementById("username").value,document.getElementById("name").value, document.getElementById('role').value);
+    if(formData.username.charAt(formData.username.length-1)==" "){
+      setFormData({
+        ...formData,
+        username:formData.username.replace(" ","")
+      })
+    }
+    const res =addTeamMember(formData.username,formData.name, formData.role);
     if(res){
       alert("Team Member added");
       getTeam();
