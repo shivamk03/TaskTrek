@@ -1,8 +1,7 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./css/Login.css";
 import Spinner from "./Spinner";
-
 
 export default function Login() {
   const [spinnerState, setSpinnerState] = useState("false");
@@ -10,8 +9,8 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    document.getElementById("login-container").style.filter = "blur(3.0px)";
     setSpinnerState("true");
-    console.log(spinnerState);
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     try {
@@ -23,6 +22,8 @@ export default function Login() {
         body: JSON.stringify({ username: email, password: password }),
       });
       if (response.status == 404) {
+        setSpinnerState("false");
+        document.getElementById("login-container").style.filter = "";
         alert("Please enter the correct creadentials");
         navigate("/login");
       } else {
@@ -31,24 +32,27 @@ export default function Login() {
           localStorage.setItem("Authorization", `Bearer ${json.token}`);
           localStorage.setItem("logged", true);
           setSpinnerState("false");
+        document.getElementById("login-container").style.filter = "";
           navigate("/dashadmin/");
         } else {
           localStorage.setItem("team-user", json.member.username);
           localStorage.setItem("logged", true);
           setSpinnerState("false");
+          document.getElementById("login-container").style.filter = "";
           navigate("/dashteam");
         }
       }
     } catch (e) {
       alert("Some error Occurred");
       setSpinnerState("false");
+      document.getElementById("login-container").style.filter = "";
       console.log(e);
     }
   };
   return (
     <>
-      {spinnerState==="true"?<Spinner />:''}
-      <div className="login-container">
+      {spinnerState === "true" ? <Spinner /> : ""}
+      <div className="login-container" id="login-container">
         <div className="login-image-container">
           <img
             src={require("../imageComponents/login.png")}
