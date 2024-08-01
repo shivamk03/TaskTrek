@@ -18,7 +18,7 @@ export default function Navbar() {
       if (localStorage.getItem("team-user")) {
         navigate("/dashteam");
       }
-      navigate("/login/handler");
+      navigate("/login");
     }
   };
   return (
