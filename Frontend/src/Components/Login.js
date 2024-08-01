@@ -1,10 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./css/Login.css";
+import Spinner from "./Spinner";
+
+
 export default function Login() {
+  const [spinnerState, setSpinnerState] = useState("false");
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSpinnerState("true");
+    console.log(spinnerState);
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     try {
@@ -23,56 +30,66 @@ export default function Login() {
         if (json.userType === "admin") {
           localStorage.setItem("Authorization", `Bearer ${json.token}`);
           localStorage.setItem("logged", true);
+          setSpinnerState("false");
           navigate("/dashadmin/");
         } else {
           localStorage.setItem("team-user", json.member.username);
-          // localStorage.setItem("team-pass", json.member.password);
           localStorage.setItem("logged", true);
+          setSpinnerState("false");
           navigate("/dashteam");
         }
       }
     } catch (e) {
       alert("Some error Occurred");
+      setSpinnerState("false");
       console.log(e);
     }
   };
   return (
-    <div className="login-container">
-      <div className="login-image-container">
-        <img
-          src={require("../imageComponents/login.png")}
-          alt=""
-          className="login-img"
-        />
-      </div>
-      <div className="login-form">
-        <h2>Log in with your credentials</h2>
-        <p className="para">
-          To get started, please sign in and manage your tasks.
-        </p>
-        <form action="/" method="post" className="login-form">
-          <label htmlFor="email">Username</label>
-          <input type="text" name="email" id="email" className="login-fields" />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            className="login-fields"
+    <>
+      {spinnerState==="true"?<Spinner />:''}
+      <div className="login-container">
+        <div className="login-image-container">
+          <img
+            src={require("../imageComponents/login.png")}
+            alt=""
+            className="login-img"
           />
-          <input
-            type="submit"
-            value="Sign in"
-            className="login-fields"
-            id="login-submit"
-            onClick={handleSubmit}
-          />
-          <p>Don't have an account? Please Sign up</p>
-          <Link to="/signup/admin" className="signup-btn">
-            Sign up
-          </Link>
-        </form>
+        </div>
+        <div className="login-form">
+          <h2>Log in with your credentials</h2>
+          <p className="para">
+            To get started, please sign in and manage your tasks.
+          </p>
+          <form action="/" method="post" className="login-form">
+            <label htmlFor="email">Username</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              className="login-fields"
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className="login-fields"
+            />
+            <input
+              type="submit"
+              value="Sign in"
+              className="login-fields"
+              id="login-submit"
+              onClick={handleSubmit}
+            />
+            <p>Don't have an account? Please Sign up</p>
+            <Link to="/signup/admin" className="signup-btn">
+              Sign up
+            </Link>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

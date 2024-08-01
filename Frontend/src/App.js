@@ -25,7 +25,6 @@ function App() {
     <BrowserRouter>
     <AdminState>
     <TeamMemberState>
-
       <Navbar/>
       <Routes>
         <Route exact path = '/' element={<Index/>}></Route>
