@@ -34,6 +34,7 @@ const DashboardAdminSearch = (props) => {
     setState(res);
   };
   const handleChange = () => {
+    setStateTask({});
     setSelection({
       currentSelection: document.getElementById("criteria").value,
     });
@@ -46,7 +47,7 @@ const DashboardAdminSearch = (props) => {
     Object.entries(state).map((t) => {
       t[1].map((e) => {
         if (e.start.substring(0, 10) === date) {
-          temp[t[0]] = t[1];
+          temp[t[0]] = e;
         }
       });
     });
@@ -60,7 +61,7 @@ const DashboardAdminSearch = (props) => {
     Object.entries(state).map((t) => {
       t[1].map((e) => {
         if (e.end.substring(0, 10) === date) {
-          temp[t[0]] = t[1];
+          temp[t[0]] = e;
         }
       });
     });
@@ -73,7 +74,7 @@ const DashboardAdminSearch = (props) => {
     Object.entries(state).map((t) => {
       t[1].map((e) => {
         if (e.heading === heading) {
-          temp[t[0]] = t[1];
+          temp[t[0]] = e;
         }
       });
     });
@@ -85,7 +86,8 @@ const DashboardAdminSearch = (props) => {
     Object.entries(state).map((t) => {
       t[1].map((e) => {
         if (e.status === "true") {
-          temp[t[0]] = t[1];
+          temp[t[0]] = e;
+        
         }
       });
     });
@@ -97,7 +99,7 @@ const DashboardAdminSearch = (props) => {
     Object.entries(state).map((t) => {
       t[1].map((e) => {
         if (e.status === "false") {
-          temp[t[0]] = t[1];
+          temp[t[0]] = e;
         }
       });
     });
@@ -109,7 +111,9 @@ const DashboardAdminSearch = (props) => {
     var user = document.getElementById("user").value;
     Object.entries(state).map((t) => {
         if (t[0]===user) {
-          temp[t[0]] = t[1];
+          t[1].map(e=>{
+            temp[t[0]]=e;
+          })
         }
     });
     setStateTask(temp);
@@ -211,27 +215,24 @@ const DashboardAdminSearch = (props) => {
         </div>
         <div className="all-container">
           {Object.entries(stateTask).map((t) => {
-
-            return t[1].map((e) => {
               resultFlag=true;
               return (
-                <div className="smallbox-container" key={t[0]}>
+                <div className="smallbox-container" key={t[0] + t[1].heading}>
                   <>
                     <SmallBox
-                      key={e}
+                      key={t[1].heading+t[0]}
                       memberName = {t[0]}
-                      heading={e.heading}
-                      description={e.description}
-                      status={e.status}
-                      comment={e.taskComment}
-                      start={e.start}
-                      end={e.end}
-                      complete={e.complete}
+                      heading={t[1].heading}
+                      description={t[1].description}
+                      status={t[1].status}
+                      comment={t[1].taskComment}
+                      start={t[1].start}
+                      end={t[1].end}
+                      complete={t[1].complete}
                       />
                   </>
                 </div>
               );
-            });
           })}
           {resultFlag?'':<h4>No search results found</h4>}
         </div>

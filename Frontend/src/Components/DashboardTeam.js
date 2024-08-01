@@ -11,7 +11,8 @@ import TaskCard from './TaskCard';
 const DashboardTeam = (props) => {
   const navigate = useNavigate();
   const data = useContext(TeamMemberContext);
-  const {state,fetchAllTasks,fetchCompany, company} = data;
+  const {state,fetchAllTasks, company} = data;
+  
   useEffect(() => {
     if (!localStorage.getItem("logged")) {
       alert("Session Timeout");

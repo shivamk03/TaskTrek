@@ -15,7 +15,10 @@ const DashboardTeamSearch = (props) => {
     currentSelection: "startDate",
   });
   const [searchRes, setSerachRes] = useState([]);
-  const { state, fetchAllTasks, fetchCompany, company } = data;
+  const { state, fetchAllTasks} = data;
+
+  let resultFlag = false;
+
   useEffect(() => {
     if (!localStorage.getItem("logged")) {
       alert("Session Timeout");
@@ -185,6 +188,7 @@ const DashboardTeamSearch = (props) => {
             )}
           </div>
           {searchRes.map((task) => {
+            resultFlag = true;
             if (currentSelection.currentSelection === "complete") {
               return <TaskCard
                 buttonView={false}
@@ -214,6 +218,7 @@ const DashboardTeamSearch = (props) => {
               />
             );
           })}
+          {resultFlag?'':<h4>No search results found</h4>}
         </div>
       )}
     </div>
