@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
+
 @Component
 public class TeamMembersService {
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -23,6 +25,16 @@ public class TeamMembersService {
 
     public void createTeamMember(TeamMembers user) {
         rep.save(user);
+    }
+
+    public Optional<TeamMembers> fetchById(ObjectId id){
+        try{
+            return rep.findById(id);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public TeamMembers getTeamMember(String username){

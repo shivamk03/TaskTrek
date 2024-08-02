@@ -63,4 +63,22 @@ public class EmailSenderService {
             return false;
         }
     }
+
+    public boolean taskReminderGeneration(String toEmail, String heading, String description, Date d){
+        try{
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("kambojshivam045@gmail.com");
+            message.setTo(toEmail);
+            String subject = "Task Reminder: "+heading+ " Deadline Approaching";
+            String text = "I hope this email finds you well. I wanted to remind you about the pending task: "+ heading+ "The deadline is approaching, and it’s essential to complete it soon.\nDescription:"+description+"\nDeadline: "+ d+ "\n";
+            message.setText(text);
+            message.setSubject(subject);
+
+            mailSender.send(message);
+            return true;
+        }catch(Exception e){
+            System.out.println((e.getMessage()));
+            return false;
+        }
+    }
 }

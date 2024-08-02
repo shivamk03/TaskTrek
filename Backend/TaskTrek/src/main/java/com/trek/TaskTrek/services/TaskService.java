@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class TaskService {
@@ -47,6 +48,14 @@ public class TaskService {
         }catch(Exception e){
             System.out.println(e.getMessage());
             return false;
+        }
+    }
+    public List<Task> fetchAllTask(){
+        try{
+            return rep.findAll();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }
