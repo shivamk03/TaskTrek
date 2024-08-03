@@ -73,13 +73,17 @@ export default function Login() {
               id="email"
               className="login-fields"
             />
+            <div className="forgot-btn-container">
+
             <label htmlFor="password">Password</label>
             <input
               type="password"
               name="password"
               id="password"
               className="login-fields"
-            />
+              />
+            <Link to ="/forgot" className="forgot-btn">Forgot Password</Link>
+              </div>
             <input
               type="submit"
               value="Sign in"
@@ -87,10 +91,10 @@ export default function Login() {
               id="login-submit"
               onClick={handleSubmit}
             />
-            <p>Don't have an account? Please Sign up</p>
-            <Link to="/signup/admin" className="signup-btn">
+            <p>Don't have an account? Please <Link to="/signup/admin" className="signup-btn">
               Sign up
-            </Link>
+            </Link></p>
+            
           </form>
         </div>
       </div>

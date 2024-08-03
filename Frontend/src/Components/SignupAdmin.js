@@ -71,10 +71,10 @@ export default function SignupAdmin() {
             id="login-submit"
             onClick={handleSubmit}
           />
-          <p>Already have an account? Please Sign in</p>
-          <Link to="/login/admin" className="signup-btn">
+          <p>Already have an account? Please <Link to="/login" className="signup-btn">
             Sign in
-          </Link>
+          </Link></p>
+          
         </form>
       </div>
     </div>

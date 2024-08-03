@@ -24,6 +24,7 @@ public class TaskController {
         try{
             boolean res = service.updateStatus(id, t.getStatus());
             if(res) {
+//                senderService.statusUpdated()
                 return new ResponseEntity<>(true, HttpStatus.OK);
             }
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);

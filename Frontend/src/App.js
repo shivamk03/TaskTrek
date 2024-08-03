@@ -20,6 +20,8 @@ import DashboardAdminDetail from "./Components/DashBoardAdminDetail";
 import DashboardTeamDetail from "./Components/DashBoardTeamDetail";
 import DashboardTeamSearch from "./Components/DashBoardTeamSearch";
 import DashboardAdminSearch from "./Components/DashBoardAdminSearch";
+import ForgotPassword from "./Components/ForgotPassword";
+import SetNewPassword from "./Components/SetNewPassword";
 function App() {
   return (
     <BrowserRouter>
@@ -43,6 +45,8 @@ function App() {
         <Route exact path = '/login' element={<LoginAdmin/>}></Route>
         <Route exact path = '/signup/admin' element={<SignupAdmin/>}></Route>
         <Route exact path = '/about' element={<WhyTaskTrek/>}></Route>
+        <Route exact path = '/forgot' element={<ForgotPassword/>}></Route>
+        <Route exact path = '/newPassword' element={<SetNewPassword/>}></Route>
       </Routes>
       <Footer/>
     </TeamMemberState>

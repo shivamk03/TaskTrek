@@ -133,7 +133,7 @@ public class AdminController {
             Task Db_t =taskService.addTask(t);
             member.getTaskEntries().add(Db_t);
             teamService.createTeamMember(member);
-            senderService.taskGenerationEmail(username, "Task Generated", t.getHeading(), t.getDescription(),t.getEnd());
+            senderService.taskReminderGeneration(username, t.getHeading(),t.getDescription(),t.getEnd());
             return new ResponseEntity<>(true, HttpStatus.OK);
         }catch(Exception e){
             System.out.println(e.getMessage());

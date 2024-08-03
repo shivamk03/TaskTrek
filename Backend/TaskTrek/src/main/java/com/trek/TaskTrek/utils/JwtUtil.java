@@ -29,6 +29,7 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, username);
     }
+
     public boolean isTokenExpired(String token){
         return extractExpiration(token).before(new Date());
     }
@@ -44,6 +45,24 @@ public class JwtUtil {
                 .and()
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 1000*60*600))
+                .signWith(getSignKey())
+                .compact();
+    }
+
+
+    // Method for forgot password token generation
+    public String generateTokenForgotPassword(String username){
+        Map<String, Object> claims = new HashMap<>();
+        return createTokenForgotPassword(claims, username);
+    }
+
+
+    // Forgot password method generation
+    public String createTokenForgotPassword(Map<String, Object> claims, String subject){
+        return Jwts.builder().claims(claims).subject(subject).header().empty().add("typ","JWT")
+                .and()
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + 1000*60*60))
                 .signWith(getSignKey())
                 .compact();
     }

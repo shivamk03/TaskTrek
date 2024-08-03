@@ -64,7 +64,7 @@ public class EmailSenderService {
         }
     }
 
-    public boolean taskReminderGeneration(String toEmail, String heading, String description, Date d){
+    public void taskReminderGeneration(String toEmail, String heading, String description, Date d){
         try{
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("kambojshivam045@gmail.com");
@@ -75,9 +75,42 @@ public class EmailSenderService {
             message.setSubject(subject);
 
             mailSender.send(message);
-            return true;
         }catch(Exception e){
             System.out.println((e.getMessage()));
+        }
+    }
+
+    public boolean sendResetPasswordGeneration(String toEmail, String jwtExpiry){
+        try{
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("kambojshivam045@gmail.com");
+            message.setTo(toEmail);
+            message.setSubject("Password Reset - TaskTrek");
+            String text = "Reset you password at http://localhost:3000/newPassword?user="+toEmail+"&expiry="+jwtExpiry;
+            message.setText(text);
+
+            mailSender.send(message);
+            return true;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean sendPasswordResetSuccessful(String toEmail){
+        try{
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("kambojshivam045@gmail.com");
+            message.setTo(toEmail);
+            message.setSubject("Password Reset Successful- TaskTrek");
+
+            String text = "Password Reset Successfully for "+toEmail;
+            message.setText(text);
+
+            mailSender.send(message);
+            return true;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
             return false;
         }
     }
